@@ -35,6 +35,7 @@ int main(){
         std::cout << "|    " ;
         
     }
+     
     for(int x=0;x<19;++x){
         
         std::cout << "----" ;;
