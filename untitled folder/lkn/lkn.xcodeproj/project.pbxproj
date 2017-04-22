@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A6A793AE1EA7276900DE5EF7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6A793AD1EA7276900DE5EF7 /* main.cpp */; };
+		A6A793B91EA75FA400DE5EF7 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6A793B71EA75FA400DE5EF7 /* Node.cpp */; };
+		A6A793BC1EA76BBD00DE5EF7 /* Maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6A793BA1EA76BBD00DE5EF7 /* Maze.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +28,10 @@
 		A6A793AA1EA7276900DE5EF7 /* lkn */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lkn; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6A793AD1EA7276900DE5EF7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A6A793B51EA7416700DE5EF7 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		A6A793B71EA75FA400DE5EF7 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
+		A6A793B81EA75FA400DE5EF7 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		A6A793BA1EA76BBD00DE5EF7 /* Maze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Maze.cpp; sourceTree = "<group>"; };
+		A6A793BB1EA76BBD00DE5EF7 /* Maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maze.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,10 @@
 			isa = PBXGroup;
 			children = (
 				A6A793AD1EA7276900DE5EF7 /* main.cpp */,
+				A6A793B71EA75FA400DE5EF7 /* Node.cpp */,
+				A6A793B81EA75FA400DE5EF7 /* Node.h */,
+				A6A793BA1EA76BBD00DE5EF7 /* Maze.cpp */,
+				A6A793BB1EA76BBD00DE5EF7 /* Maze.h */,
 				A6A793B51EA7416700DE5EF7 /* Vector.h */,
 			);
 			path = lkn;
@@ -121,7 +131,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6A793BC1EA76BBD00DE5EF7 /* Maze.cpp in Sources */,
 				A6A793AE1EA7276900DE5EF7 /* main.cpp in Sources */,
+				A6A793B91EA75FA400DE5EF7 /* Node.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
