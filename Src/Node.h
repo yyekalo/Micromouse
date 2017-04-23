@@ -9,21 +9,48 @@
 #ifndef Node_hpp
 #define Node_hpp
 
-#include <stdio.h>
 #include "Vector.h"
 #include "Vector"
+
+const int INF = 6500;
+
 
 class Node {
     
     
 public:
+    
+   
+    
     template <class T>
-    Node(Location<T> location);
+    Node(Location<int> location);
+   
+    
     ~Node();
+    
+   
     Location<int> getLocation();
+    
     Node* getparent();
+    
     void setparent(Node* const parent);
-    bool wall[3];
+    
+    bool isWall(Direction heading);
+    
+    void setWall(Direction heading);
+    
+    void resetWall(Direction heading);
+    
+    int getC();
+    
+    int getH();
+    
+    bool isExplored();
+    
+    void setExplored();
+    
+    
+    
     
     
 private:
@@ -34,13 +61,13 @@ private:
     
     Node* parent;
     
+    int cost_so_far = INF;
     
+    int hurestic    = INF;
     
+    bool explored = false;
     
-    
-    
-    
-    
+    bool wall[4] = {true,true,true,true};
     
     
 };

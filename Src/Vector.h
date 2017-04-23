@@ -9,16 +9,26 @@
 #ifndef Vector_hpp
 #define Vector_hpp
 
-#include <stdio.h>
+enum Direction {
+    
+    N=0,E=2,S=3,W=4,
+    
+    NW,NE,SE,SW,
+    
+};
+
 
 template<class T>
 class Location{
     
 public:
     
-    Location(T _x,T _y);
+    Location();
     
-   // Location(const Location& location);
+    Location(T _x,T _y);
+
+    
+    Location(const Location<T>  & location);
     
     //getters
     T x();
@@ -26,13 +36,18 @@ public:
     
     //seter
     void x(T X);
+    
     void y(T Y);
     
     
     Location operator+(Location location);
+    
     Location operator-(Location location);
+    
     Location operator*(T scale);
+    
     bool     operator==(Location location);
+    
     bool     operator!=(Location location);
     
     
@@ -40,6 +55,16 @@ private:
     
     T _x,_y;
 };
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -57,13 +82,14 @@ Location<T>::Location(T X,T Y){
 
 
 //TODO: implment construction by reference
-//template<class T>
-//Location<T>::Location(const Location& location){
-//    
-//    x(location.x());
-//    y(location.y());
-//    
-//}
+template<class T>
+Location<T>::Location(const Location<T>  & location): _x(location.x(),_y(location.y()){
+    
+    x(location.x());
+    y(location.y());
+    
+    
+}
 
 
 

@@ -9,8 +9,14 @@
 #include "Node.h"
 
 
+
+
+
+
+
+
 template <class T>
-Node::Node(Location<T> location){
+Node::Node(Location<int> location){
     
     this-> location = location;
     
@@ -58,3 +64,84 @@ void Node::setparent(Node* const parent){
     this -> parent = parent;
     
 }
+
+
+
+
+
+
+
+
+
+
+bool Node::isWall(Direction heading){
+    
+    return wall[(int)heading];
+}
+
+
+
+
+
+
+void Node::setWall(Direction heading){
+    
+    wall[(int)heading] = true;
+    
+}
+
+
+
+
+
+void Node::resetWall(Direction heading){
+    
+    wall[(int)heading] = false;
+    
+}
+
+
+
+
+
+
+
+int Node::getC(){
+    
+    return cost_so_far;
+}
+
+
+
+
+
+
+int Node::getH(){
+    
+    return hurestic;
+}
+
+
+
+
+
+
+bool Node::isExplored(){
+    
+    return explored;
+    
+}
+
+
+
+
+
+
+
+void Node::setExplored(){
+    
+    explored =  true;
+    
+}
+
+
