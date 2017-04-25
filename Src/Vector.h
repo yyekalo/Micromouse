@@ -28,7 +28,7 @@ public:
     Location(T _x,T _y);
 
     
-    Location(const Location<T>  & location);
+  //  Location(const Location<T>  & location);
     
     //getters
     T x();
@@ -62,6 +62,16 @@ private:
 
 
 
+template<class T>
+Location<T>::Location(){
+    
+}
+
+
+
+
+
+
 
 
 
@@ -81,15 +91,15 @@ Location<T>::Location(T X,T Y){
 
 
 
-//TODO: implment construction by reference
-template<class T>
-Location<T>::Location(const Location<T>  & location): _x(location.x(),_y(location.y()){
-    
-    x(location.x());
-    y(location.y());
-    
-    
-}
+////TODO: implment construction by reference
+//template<class T>
+//Location<T>::Location(const Location<T>  & location): _x(location.x(),_y(location.y()){
+//    
+//    x(location.x());
+//    y(location.y());
+//    
+//    
+//}
 
 
 
