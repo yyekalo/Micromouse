@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A60114011EAD73A300DB80EF /* Maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A60113FF1EAD73A300DB80EF /* Maze.cpp */; };
-		A6E2270C1EAC18CB00BA3F40 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6E227071EAC18CB00BA3F40 /* Node.cpp */; };
 		A6E2270E1EAC1A4E00BA3F40 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6E2270D1EAC1A4E00BA3F40 /* main.cpp */; };
 		A6E227151EAC788200BA3F40 /* libsfml-audio.2.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E227101EAC788200BA3F40 /* libsfml-audio.2.4.2.dylib */; };
 		A6E227161EAC788200BA3F40 /* libsfml-graphics.2.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E227111EAC788200BA3F40 /* libsfml-graphics.2.4.2.dylib */; };
@@ -33,8 +32,6 @@
 		A60113FF1EAD73A300DB80EF /* Maze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Maze.cpp; sourceTree = "<group>"; };
 		A60114001EAD73A300DB80EF /* Maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maze.h; sourceTree = "<group>"; };
 		A6A793951EA0412F00DE5EF7 /* teensyMicromouse */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = teensyMicromouse; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6E227071EAC18CB00BA3F40 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Node.cpp; path = Src/Node.cpp; sourceTree = "<group>"; };
-		A6E227081EAC18CB00BA3F40 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Node.h; path = Src/Node.h; sourceTree = "<group>"; };
 		A6E227091EAC18CB00BA3F40 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector.h; path = Src/Vector.h; sourceTree = "<group>"; };
 		A6E2270D1EAC1A4E00BA3F40 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = Src/main.cpp; sourceTree = "<group>"; };
 		A6E227101EAC788200BA3F40 /* libsfml-audio.2.4.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-audio.2.4.2.dylib"; path = "SFML/lib/libsfml-audio.2.4.2.dylib"; sourceTree = "<group>"; };
@@ -66,8 +63,6 @@
 				A6E2270D1EAC1A4E00BA3F40 /* main.cpp */,
 				A60113FF1EAD73A300DB80EF /* Maze.cpp */,
 				A60114001EAD73A300DB80EF /* Maze.h */,
-				A6E227071EAC18CB00BA3F40 /* Node.cpp */,
-				A6E227081EAC18CB00BA3F40 /* Node.h */,
 				A6E227091EAC18CB00BA3F40 /* Vector.h */,
 				A6A793971EA0412F00DE5EF7 /* teensyMicromouse */,
 				A6A793961EA0412F00DE5EF7 /* Products */,
@@ -161,7 +156,6 @@
 			files = (
 				A60114011EAD73A300DB80EF /* Maze.cpp in Sources */,
 				A6E2270E1EAC1A4E00BA3F40 /* main.cpp in Sources */,
-				A6E2270C1EAC18CB00BA3F40 /* Node.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

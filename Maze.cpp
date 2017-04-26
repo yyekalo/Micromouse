@@ -1,90 +1,96 @@
-////
-////  Maze.cpp
-////  teensyMicromouse
-////
-////  Created by Yikealo Abraha  on 4/23/17.
-////  Copyright © 2017 Yikealo Abraha . All rights reserved.
-////
 //
-//#include "Maze.h"
-///* node to self i am stuck here will figure it out next time i get back to it*/
-//Maze::Maze(){
-//    
-//    for(int x=1;x <17;x++){
-//        
-//        for(int y=1;y <17;y++){
-//            
-//            Location<int> temp(x,y);
-//            
-//            maze[x],[y] = Node(temp);
-//        }
-//    }
-//    
-//    
-//}
+//  Maze.cpp
+//  teensyMicromouse
 //
+//  Created by Yikealo Abraha  on 4/23/17.
+//  Copyright © 2017 Yikealo Abraha . All rights reserved.
 //
-//
-//
-//
-//
-//Maze::~Maze(){
-//    
-//    
-//    
-//}
-//
-//
-//
-//
-//
-//
-//Node* Maze::getNode(Location<int> location){
-//    
-//    
-//}
-//
-//
-//
-//
-//
-//
-//
-//std::vector<Node> Maze::getNeighbour(Location<int> location){
-//    
-//    
-//}
-//
-//
-//
-//
-//
-//
-//
-//Node* Maze::getNeighbour(Location<int> location, Direction){
-//    
-//    
-//}
-//
-//
-//
-//
-//
-//
-//
-//void Maze::setExplored(Location<int> location){
-//    
-//}
-//
-//
-//
-//
-//
-//
-//
-//bool Maze::isExplored(Location<int> location)const{
-//    
-//    
-//    
-//    
-//}
+
+#include "Maze.h"
+/* node to self i am stuck here will figure it out next time i get back to it*/
+Maze::Maze(){
+    
+    resetMaze();
+    
+}
+
+
+
+
+
+
+Maze::~Maze(){
+    
+    
+    
+}
+
+
+
+
+
+
+Node* Maze::getNode(Node location){
+    
+    
+}
+
+
+
+
+
+
+
+std::vector<Node> Maze::getNeighbour(Node location){
+    
+   // return maze[location];
+    
+}
+
+
+
+
+
+
+
+Node* Maze::getNeighbour(Node location, Direction){
+    
+    
+}
+
+
+
+
+
+
+
+void Maze::setExplored(Node location){
+    
+}
+
+
+
+
+
+
+
+bool Maze::isExplored(Node location)const{
+    
+
+    return explored[location]
+    
+    
+}
+
+
+
+
+
+
+
+
+void resetMaze(){
+    
+    
+}
+

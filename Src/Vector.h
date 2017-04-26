@@ -26,13 +26,16 @@ public:
     Location();
     
     Location(T _x,T _y);
+    
+    T m,n;
 
     
   //  Location(const Location<T>  & location);
     
     //getters
-    T x();
-    T y();
+    T x() const;
+    T y() const;
+    
     
     //seter
     void x(T X);
@@ -56,7 +59,10 @@ private:
     T _x,_y;
 };
 
-
+//Location(position)  of a cell(node)
+typedef Location<int> Node;
+//abslute coordinate of the mouse in the maze
+typedef Location<float> position;
 
 
 
@@ -84,7 +90,8 @@ Location<T>::Location(T X,T Y){
     
     x(X);
     y(Y);
-    
+    m=_x;
+    n=_y;
 }
 
 
@@ -106,7 +113,7 @@ Location<T>::Location(T X,T Y){
 
 
 template<class T>
-T Location<T>::x(){
+T Location<T>::x() const{
     
     return this ->_x;
     
@@ -118,7 +125,7 @@ T Location<T>::x(){
 
 
 template<class T>
-T Location<T>::y(){
+T Location<T>::y() const{
     
     return this -> _y;
     
@@ -208,4 +215,24 @@ bool    Location<T>::operator!=(Location location){
     
 }
 
+
+
+
+
+//TODO: modify this in the fucure
+struct NodeHasher
+{
+    std::size_t operator()(const Node& k) const
+    {
+        using std::size_t;
+        using std::hash;
+        using std::string;
+        
+        
+        return ((hash<int>()(k.x()) ^ hash<int>()(k.y())));
+        
+        
+        
+    }
+};
 #endif /* Vector_hpp */

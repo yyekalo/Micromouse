@@ -10,8 +10,9 @@
 #define Maze_hpp
 
 #include <stdio.h>
-#include "Node.h"
 #include "Vector.h"
+#include <unordered_map>
+
 
 class Maze
 {
@@ -22,21 +23,30 @@ public:
     
     ~Maze();
     
-    Node* getNode(Location<int> location);
+    Node* getNode(Node location);
     
-    std::vector<Node> getNeighbour(Location<int> location);
+    std::vector<Node> getNeighbour(Node location);
     
-    Node* getNeighbour(Location<int> location, Direction);
+    Node* getNeighbour(Node location, Direction);
     
-    void setExplored(Location<int> location);
+    void setExplored(Node location);
     
-    bool isExplored(Location<int> location) const;
+    bool isExplored(Node location) const;
 
     
 private:
     
+    void resetMaze();
     
-    std::vector<Location<int>> maze;
+    std::unordered_map<Node,std::vector<Node>,NodeHasher> maze;
+    
+    std::unordered_map<Node, float,NodeHasher>  cost;
+    
+    std::unordered_map<Node, Node,NodeHasher>  parent;
+    
+    std::unordered_map<Node, bool,NodeHasher>  explored;
+
+    
     
     
 };
