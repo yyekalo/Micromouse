@@ -30,55 +30,12 @@ Maze::~Maze(){
 
 
 
-Node* Maze::getNode(Node location){
+
+
+
+bool isvalidNode(Node& node){
     
-    
-}
-
-
-
-
-
-
-
-std::vector<Node> Maze::getNeighbour(Node location){
-    
-   // return maze[location];
-    
-}
-
-
-
-
-
-
-
-Node* Maze::getNeighbour(Node location, Direction){
-    
-    
-}
-
-
-
-
-
-
-
-void Maze::setExplored(Node location){
-    
-}
-
-
-
-
-
-
-
-bool Maze::isExplored(Node location)const{
-    
-
-    return explored[location]
-    
+    return (node.x() < mazeWidth && node.x() > 0 ) && (node.y() < mazeHeight && node.y() > 0 );
     
 }
 
@@ -89,8 +46,123 @@ bool Maze::isExplored(Node location)const{
 
 
 
-void resetMaze(){
+std::vector<Node> getNeighbour(const Node& location){
+    
+    std::vector<Node> temp;
+    
+    
+    
+    Node holder;
+    
+    for (int x=-1; x <= 2 ; x++) {
+        
+        
+        for (int y = -1; y <= 2; y++) {
+            
+            holder = Node( (location.x() + x ), (location.y() + y) );
+            
+            std::cout << "potentional" << std::endl;
+            
+            std::cout << holder.returnString()<< std::endl;
+            
+            if (isvalidNode(holder) && location==holder) {
+                
+                temp.push_back(holder);
+
+            }
+      
+        }
+   
+    }
+    
+    std::cout << "##########################" << std::endl;
+    
+    std::cout << holder.returnString()<< std::endl;
+
+    std::cout << "***************************" << std::endl;
+
+    
+    for(auto m : temp)
+    {
+        
+        std::cout << m.returnString()<< std::endl;
+    }
+    
+    std::cout << "***************************" << std::endl;
+    
+    return temp;
     
     
 }
+
+
+
+
+
+
+
+
+
+void Maze::setExplored(const Node& location){
+    
+    explored[location] = true;
+    
+}
+
+
+
+
+
+
+
+bool Maze::isExplored(const Node& location)const{
+    
+
+    return explored.at(location);
+    
+}
+
+
+
+
+
+
+
+
+void Maze::resetMaze(){
+    
+    Node temp;
+    std::vector<Node> neb;
+    
+    for(int x = 0 ; x < mazeWidth ; x++ ){
+        
+        
+        for (int y = 0 ; y< mazeHeight ; y++) {
+            
+            temp = Node(x,y);
+            
+            neb = getNeighbour(temp);
+           
+            maze.emplace(temp,neb);
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
 

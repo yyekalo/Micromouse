@@ -12,6 +12,13 @@
 #include <stdio.h>
 #include "Vector.h"
 #include <unordered_map>
+#include <vector>
+
+//To be removed later here just for debuging purpose only
+#include <iostream>
+
+#define mazeHeight 16
+#define mazeWidth 16
 
 
 class Maze
@@ -23,18 +30,17 @@ public:
     
     ~Maze();
     
-    Node* getNode(Node location);
+    friend std::vector<Node> getNeighbour(const Node& location);
     
-    std::vector<Node> getNeighbour(Node location);
     
-    Node* getNeighbour(Node location, Direction);
+    void setExplored(const Node& location);
     
-    void setExplored(Node location);
-    
-    bool isExplored(Node location) const;
+    bool isExplored(const Node& location) const;
 
     
 private:
+    
+    bool isvalidNode(Node& node);
     
     void resetMaze();
     

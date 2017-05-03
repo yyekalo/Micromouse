@@ -8,11 +8,17 @@
 
 #include <stdio.h>
 #include <iostream>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/System/Time.hpp>
 
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <map>
+#include <vector>
 
+//Graphic include
+//#include <SFML/Graphics.hpp>
+//#include <SFML/Audio.hpp>
+//#include <SFML/System/Time.hpp>
 
 using namespace std;
 
@@ -31,13 +37,21 @@ using namespace std;
 
 
 
-
 int main(){
     
+   const Node temp1(1,2);
+    Node temp2(3,8);
+    const Node temp3(5,5);
+    Node temp4(4,4);
+    Node temp5(5,5);
+    Node temp6(6,6);
     
-    //TODO: define a hash function and equality in my Vector class.
+    Node tempm(4,4);
     
-    std::unordered_map<Node, std::vector<Node>,NodeHasher> test;
+    Maze mymaze;
+    
+   
+    
     
     
     

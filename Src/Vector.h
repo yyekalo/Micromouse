@@ -9,6 +9,13 @@
 #ifndef Vector_hpp
 #define Vector_hpp
 
+#include <stdio.h>
+#include <functional>
+#include <string>
+
+
+
+
 enum Direction {
     
     N=0,E=2,S=3,W=4,
@@ -26,8 +33,6 @@ public:
     Location();
     
     Location(T _x,T _y);
-    
-    T m,n;
 
     
   //  Location(const Location<T>  & location);
@@ -35,6 +40,8 @@ public:
     //getters
     T x() const;
     T y() const;
+    
+    std::string returnString();
     
     
     //seter
@@ -49,9 +56,17 @@ public:
     
     Location operator*(T scale);
     
-    bool     operator==(Location location);
+   // bool    operator=(const Location& loc);
     
-    bool     operator!=(Location location);
+    bool    operator==(Location location);
+    
+    bool    operator!=(Location location);
+    
+    bool    operator<(const Location& location);
+    
+    bool    operator>(const Location& location);
+    
+    bool    operator==(const Location& loc2) const;
     
     
 private:
@@ -90,8 +105,6 @@ Location<T>::Location(T X,T Y){
     
     x(X);
     y(Y);
-    m=_x;
-    n=_y;
 }
 
 
@@ -159,6 +172,18 @@ void Location<T>::y(T Y){
 
 
 
+
+
+//template<class T>
+//bool Location<T>::operator=(const Location& loc){
+//    
+//    return (this->_x == loc.x() && this-> _y == loc.y());
+//}
+
+
+
+
+
 template<class T>
 Location<T> Location<T>::operator+(Location location){
     
@@ -219,17 +244,74 @@ bool    Location<T>::operator!=(Location location){
 
 
 
+
+
+
+
+template<class T>
+bool     Location<T>::operator<(const Location& location){
+    
+    return this->_x < location.x() & this-> _y < location.y();
+}
+
+
+
+
+
+
+
+template<class T>
+bool     Location<T>::operator>(const Location& location){
+    
+    return this->_x > location.x() & this-> _y > location.y();
+}
+
+
+
+
+
+
+template<class T>
+bool  Location<T>::operator==(const Location& loc2) const{
+    
+    return (loc2.x() == this->_x && this->_y == loc2.y());
+    
+}
+
+
+
+
+
+
+
+template<class T>
+std::string Location<T>::returnString(){
+    
+    return "<" + std::to_string(_x) + ":" + std::to_string(_y) +">";
+    
+}
+
+
+//template<class T>
+//std::ostream& operator<<(std::ostream& os, const Location<T>& me ){
+//
+//    os << "<" << to_string(me.x()) << ":" << to_string(me.y()) << ">";
+//
+//    return os;
+//
+//}
+
+
+
+
 //TODO: modify this in the fucure
 struct NodeHasher
 {
     std::size_t operator()(const Node& k) const
     {
-        using std::size_t;
-        using std::hash;
-        using std::string;
+       
         
-        
-        return ((hash<int>()(k.x()) ^ hash<int>()(k.y())));
+        return (((std::hash<int>()(k.x()) * 16 )+  std::hash<int>()(k.y())));
         
         
         
