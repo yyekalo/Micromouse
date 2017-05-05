@@ -14,6 +14,13 @@
 #include <unordered_map>
 #include <map>
 #include <vector>
+#include <queue>
+
+
+
+
+
+
 
 //Graphic include
 //#include <SFML/Graphics.hpp>
@@ -37,30 +44,20 @@ using namespace std;
 
 
 
+
 int main(){
     
-   const Node temp1(1,2);
-    Node temp2(3,8);
-    const Node temp3(5,5);
+    Node temp1(1,1);
+    Node temp2(2,2);
+    Node temp3(3,3);
     Node temp4(4,4);
     Node temp5(5,5);
     Node temp6(6,6);
-    
-    Node tempm(4,4);
-    
-    Maze mymaze;
-    
-    std::cout << "&&&&&&&&&&&&&&&&&&&&&&&" << endl;
-    
-    vector<Node>  temps =  mymaze.getNeighbour(temp4);
+    Node temp7(7,7);
     
     
-     std::cout << "&&&&&&&&&&&&&&&&&&&&&&&" << endl;
     
-    for(auto t : temps){
-        
-        std::cout << t.returnString() << endl;
-    }
+    
     
     
     

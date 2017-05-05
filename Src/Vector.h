@@ -12,17 +12,26 @@
 #include <stdio.h>
 #include <functional>
 #include <string>
+#include <stack>
 
 
 
-
+//Directions
 enum Direction {
     
-    N=0,E=2,S=3,W=4,
+   NW=8,  N=0,  NE=1,
     
-    NW,NE,SE,SW,
+   W=6,         E=2,
+    
+   SW=5,  S=4,  SE=3
+    
+   
     
 };
+
+
+
+
 
 
 template<class T>
@@ -64,9 +73,9 @@ public:
     
     bool    operator!=(const Location& loc2) const;
     
-    bool    operator<(const Location& location);
+    bool    operator<(const Location& location) const;
     
-    bool    operator>(const Location& location);
+    bool    operator>(const Location& location) const;
     
     bool    operator==(const Location& loc2) const;
     
@@ -264,7 +273,7 @@ bool    Location<T>::operator!=(const Location& loc2) const{
 
 
 template<class T>
-bool     Location<T>::operator<(const Location& location){
+bool     Location<T>::operator<(const Location& location) const{
     
     return this->_x < location.x() & this-> _y < location.y();
 }
@@ -276,7 +285,7 @@ bool     Location<T>::operator<(const Location& location){
 
 
 template<class T>
-bool     Location<T>::operator>(const Location& location){
+bool     Location<T>::operator>(const Location& location) const{
     
     return this->_x > location.x() & this-> _y > location.y();
 }

@@ -28,6 +28,64 @@ Maze::~Maze(){
 
 
 
+//Manhatten style distance between two nodes
+float Maze::movementCost(const Node& from, const Node& to) const{
+    
+    return  sqrt(pow(abs(from.x()-to.x()),2) + pow(abs(from.y()-to.y()),2));
+    
+}
+
+
+
+
+
+
+
+//ToDo have this return a path type
+//Need to creat path class.
+void Maze::findPath(const Node& from, const Node& to){
+    
+    PriorityQueue toBeExplored;
+    
+    toBeExplored.put(from, 0);
+    
+    parent[from] = from;
+    
+    explored[from] = true;
+    
+    
+    while (!toBeExplored.empty()) {
+        
+        Node currentNode = toBeExplored.get();
+        
+        if (currentNode == to) {
+            break;
+        }
+        
+        
+        for(Node neighbour : getNeighbour(currentNode)){
+            
+            float newCost = cost[currentNode] +  movementCost(currentNode, neighbour);
+            
+            if ( !cost.count(neighbour) || newCost < cost[neighbour]) {
+                
+                parent[neighbour] = currentNode;
+                
+                cost[neighbour] = newCost;
+                
+                float priority = newCost + movementCost(neighbour, to);
+                
+                toBeExplored.put(neighbour, priority);
+                
+                
+            }
+        }
+    }
+    
+}
+
+
+
 
 
 

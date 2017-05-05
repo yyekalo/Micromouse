@@ -13,12 +13,38 @@
 #include "Vector.h"
 #include <unordered_map>
 #include <vector>
+#include <queue>
+#include <math.h>
 
 //To be removed later here just for debuging purpose only
 #include <iostream>
 
+
 #define mazeHeight 16
 #define mazeWidth 16
+
+/*This queue wraper struct code and the findPath function which implment the A* algorithm is also adaptation form Amit Patel @ https://twitter.com/redblobgames
+
+ */
+struct PriorityQueue {
+    typedef std::pair<float, Node> PQElement;
+    std::priority_queue<PQElement, std::vector<PQElement>,
+    std::greater<PQElement>> elements;
+    
+    inline bool empty() const { return elements.empty(); }
+    
+    inline void put(Node item, float priority) {
+        elements.emplace(priority, item);
+    }
+    
+    inline Node get() {
+        Node best_item = elements.top().second;
+        elements.pop();
+        return best_item;
+    }
+};
+
+
 
 
 class Maze
@@ -29,6 +55,10 @@ public:
     Maze();
     
     ~Maze();
+    
+    float movementCost(const Node& from, const Node& to) const;
+    
+    void findPath(const Node& from , const Node& to );
     
     std::vector<Node> getNeighbour(const Node& location);
     
@@ -62,6 +92,17 @@ private:
     
     
 };
+
+
+
+
+
+
+
+
+
+
+
 
 
 #endif /* Maze_hpp */

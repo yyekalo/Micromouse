@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A60114011EAD73A300DB80EF /* Maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A60113FF1EAD73A300DB80EF /* Maze.cpp */; };
+		A69087EA1EBC749000A35895 /* VirtualMaze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A69087E81EBC749000A35895 /* VirtualMaze.cpp */; };
+		A69087ED1EBC752B00A35895 /* Maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A69087EB1EBC752B00A35895 /* Maze.cpp */; };
 		A6E2270E1EAC1A4E00BA3F40 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6E2270D1EAC1A4E00BA3F40 /* main.cpp */; };
 		A6E227151EAC788200BA3F40 /* libsfml-audio.2.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E227101EAC788200BA3F40 /* libsfml-audio.2.4.2.dylib */; };
 		A6E227161EAC788200BA3F40 /* libsfml-graphics.2.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E227111EAC788200BA3F40 /* libsfml-graphics.2.4.2.dylib */; };
@@ -29,8 +30,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A60113FF1EAD73A300DB80EF /* Maze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Maze.cpp; sourceTree = "<group>"; };
-		A60114001EAD73A300DB80EF /* Maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maze.h; sourceTree = "<group>"; };
+		A69087E81EBC749000A35895 /* VirtualMaze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualMaze.cpp; path = Src/VirtualMaze.cpp; sourceTree = "<group>"; };
+		A69087E91EBC749000A35895 /* VirtualMaze.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualMaze.hpp; path = Src/VirtualMaze.hpp; sourceTree = "<group>"; };
+		A69087EB1EBC752B00A35895 /* Maze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Maze.cpp; path = Src/Maze.cpp; sourceTree = "<group>"; };
+		A69087EC1EBC752B00A35895 /* Maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Maze.h; path = Src/Maze.h; sourceTree = "<group>"; };
 		A6A793951EA0412F00DE5EF7 /* teensyMicromouse */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = teensyMicromouse; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E227091EAC18CB00BA3F40 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector.h; path = Src/Vector.h; sourceTree = "<group>"; };
 		A6E2270D1EAC1A4E00BA3F40 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = Src/main.cpp; sourceTree = "<group>"; };
@@ -61,8 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				A6E2270D1EAC1A4E00BA3F40 /* main.cpp */,
-				A60113FF1EAD73A300DB80EF /* Maze.cpp */,
-				A60114001EAD73A300DB80EF /* Maze.h */,
+				A69087E81EBC749000A35895 /* VirtualMaze.cpp */,
+				A69087E91EBC749000A35895 /* VirtualMaze.hpp */,
+				A69087EB1EBC752B00A35895 /* Maze.cpp */,
+				A69087EC1EBC752B00A35895 /* Maze.h */,
 				A6E227091EAC18CB00BA3F40 /* Vector.h */,
 				A6A793971EA0412F00DE5EF7 /* teensyMicromouse */,
 				A6A793961EA0412F00DE5EF7 /* Products */,
@@ -154,8 +159,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A60114011EAD73A300DB80EF /* Maze.cpp in Sources */,
+				A69087ED1EBC752B00A35895 /* Maze.cpp in Sources */,
 				A6E2270E1EAC1A4E00BA3F40 /* main.cpp in Sources */,
+				A69087EA1EBC749000A35895 /* VirtualMaze.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
