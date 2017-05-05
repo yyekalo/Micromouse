@@ -48,10 +48,26 @@ using namespace std;
 
 int main(){
     
-    int one =98;
+    Node a(5,5);
+    Node b(5,6);
     
-    cout << one/100 << endl;
+    Maze mm;
+  
+    for(auto m: mm.getStoredNeighbour(a)){
+        
+        cout << m.returnString() << endl;
+    }
+    mm.removeNeighbour(Node(5,5), Node(5,6));
     
+    
+    cout << "*******************"<< endl;
+
+    for(auto m: mm.getStoredNeighbour(a)){
+        
+        cout << m.returnString() << endl;
+    }
+  
+    cout <<  mm.areNeighbours(Node(5,5), Node(5,6)) << endl;;
     
     
     
