@@ -50,8 +50,17 @@ int main(){
     
     Maze mymaze;
     
-   
+    std::cout << "&&&&&&&&&&&&&&&&&&&&&&&" << endl;
     
+    vector<Node>  temps =  mymaze.getNeighbour(temp4);
+    
+    
+     std::cout << "&&&&&&&&&&&&&&&&&&&&&&&" << endl;
+    
+    for(auto t : temps){
+        
+        std::cout << t.returnString() << endl;
+    }
     
     
     

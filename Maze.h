@@ -30,12 +30,18 @@ public:
     
     ~Maze();
     
-    friend std::vector<Node> getNeighbour(const Node& location);
+    std::vector<Node> getNeighbour(const Node& location);
     
     
     void setExplored(const Node& location);
     
     bool isExplored(const Node& location) const;
+    
+    void removeNeighbour(const Node& current, const Node& toBeRemoved);
+    
+    void addNeighbour(const Node& current, const Node& toBeAdded);
+    
+    void removeNode(const Node& toBeRemoved);
 
     
 private:

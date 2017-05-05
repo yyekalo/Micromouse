@@ -33,7 +33,7 @@ Maze::~Maze(){
 
 
 
-bool isvalidNode(Node& node){
+bool Maze::isvalidNode(Node& node){
     
     return (node.x() < mazeWidth && node.x() > 0 ) && (node.y() < mazeHeight && node.y() > 0 );
     
@@ -46,7 +46,7 @@ bool isvalidNode(Node& node){
 
 
 
-std::vector<Node> getNeighbour(const Node& location){
+std::vector<Node> Maze::getNeighbour(const Node& location){
     
     std::vector<Node> temp;
     
@@ -54,18 +54,18 @@ std::vector<Node> getNeighbour(const Node& location){
     
     Node holder;
     
-    for (int x=-1; x <= 2 ; x++) {
+    for (int x=-1; x < 2 ; x++) {
         
         
-        for (int y = -1; y <= 2; y++) {
+        for (int y = -1; y < 2; y++) {
+            
+           
             
             holder = Node( (location.x() + x ), (location.y() + y) );
             
-            std::cout << "potentional" << std::endl;
             
-            std::cout << holder.returnString()<< std::endl;
             
-            if (isvalidNode(holder) && location==holder) {
+            if (isvalidNode(holder) && location!= holder) {
                 
                 temp.push_back(holder);
 
@@ -74,21 +74,7 @@ std::vector<Node> getNeighbour(const Node& location){
         }
    
     }
-    
-    std::cout << "##########################" << std::endl;
-    
-    std::cout << holder.returnString()<< std::endl;
 
-    std::cout << "***************************" << std::endl;
-
-    
-    for(auto m : temp)
-    {
-        
-        std::cout << m.returnString()<< std::endl;
-    }
-    
-    std::cout << "***************************" << std::endl;
     
     return temp;
     
@@ -127,11 +113,47 @@ bool Maze::isExplored(const Node& location)const{
 
 
 
+void Maze::removeNeighbour(const Node& current, const Node& toBeRemoved){
+    
+    maze[current].erase(std::remove(maze[current].begin(), maze[current].end(), toBeRemoved), maze[current].end());
+    
+}
+
+
+
+
+
+
+
+
+void Maze::addNeighbour(const Node& current, const Node& toBeAdded){
+    
+    maze[current].push_back(toBeAdded);
+    
+}
+
+
+
+
+
+
+
+void Maze::removeNode(const Node& toBeRemoved){
+    
+    maze.erase(toBeRemoved);
+    
+}
+
+
+
+
+
 
 
 void Maze::resetMaze(){
     
     Node temp;
+    
     std::vector<Node> neb;
     
     for(int x = 0 ; x < mazeWidth ; x++ ){
@@ -148,13 +170,7 @@ void Maze::resetMaze(){
             
         }
         
-        
-        
-        
-        
-        
     }
-    
     
 }
 

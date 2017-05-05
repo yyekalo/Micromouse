@@ -62,6 +62,8 @@ public:
     
     bool    operator!=(Location location);
     
+    bool    operator!=(const Location& loc2) const;
+    
     bool    operator<(const Location& location);
     
     bool    operator>(const Location& location);
@@ -240,6 +242,19 @@ bool    Location<T>::operator!=(Location location){
     
 }
 
+
+
+
+
+
+
+
+template<class T>
+bool    Location<T>::operator!=(const Location& loc2) const{
+    
+    return (this->_x != loc2.x() | this->_y != loc2.y());
+    
+}
 
 
 
