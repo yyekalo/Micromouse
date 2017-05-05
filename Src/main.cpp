@@ -23,15 +23,16 @@
 
 
 //Graphic include
-//#include <SFML/Graphics.hpp>
-//#include <SFML/Audio.hpp>
-//#include <SFML/System/Time.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/System/Time.hpp>
 
 using namespace std;
 
-//#include "Node.h"
+//My own includes
 #include "Vector.h"
 #include "Maze.h"
+#include "VirtualMaze.h"
 
 
 
@@ -47,17 +48,9 @@ using namespace std;
 
 int main(){
     
-    Node temp1(1,1);
-    Node temp2(2,2);
-    Node temp3(3,3);
-    Node temp4(4,4);
-    Node temp5(5,5);
-    Node temp6(6,6);
-    Node temp7(7,7);
+    int one =98;
     
-    
-    
-    
+    cout << one/100 << endl;
     
     
     

@@ -72,6 +72,10 @@ public:
     void addNeighbour(const Node& current, const Node& toBeAdded);
     
     void removeNode(const Node& toBeRemoved);
+    
+    void addNode(const Node& toBeAdded);
+    
+    void addNode(const Node& toBeAdded, std::vector<Node> neighbour);
 
     
 private:

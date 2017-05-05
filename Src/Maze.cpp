@@ -174,6 +174,7 @@ bool Maze::isExplored(const Node& location)const{
 void Maze::removeNeighbour(const Node& current, const Node& toBeRemoved){
     
     maze[current].erase(std::remove(maze[current].begin(), maze[current].end(), toBeRemoved), maze[current].end());
+    maze[toBeRemoved].erase(std::remove(maze[current].begin(), maze[current].end(), current), maze[current].end());
     
 }
 
@@ -187,6 +188,7 @@ void Maze::removeNeighbour(const Node& current, const Node& toBeRemoved){
 void Maze::addNeighbour(const Node& current, const Node& toBeAdded){
     
     maze[current].push_back(toBeAdded);
+    maze[toBeAdded].push_back(current);
     
 }
 
@@ -202,6 +204,32 @@ void Maze::removeNode(const Node& toBeRemoved){
     
 }
 
+
+
+
+
+
+
+
+void Maze::addNode(const Node& toBeAdded){
+    
+    std::vector<Node> temp;
+    
+    maze.emplace(toBeAdded,temp);
+    
+}
+
+
+
+
+
+
+
+void Maze::addNode(const Node& toBeAdded, std::vector<Node> neighbour){
+    
+    maze.emplace(toBeAdded,neighbour);
+    
+}
 
 
 
