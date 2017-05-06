@@ -19,7 +19,7 @@
 //Directions
 enum Direction {
     
-   NW=8,  N=0,  NE=1,
+   NW=7,  N=0,  NE=1,
     
    W=6,         E=2,
     
@@ -50,6 +50,8 @@ public:
     T x() const;
     T y() const;
     
+    std::string returnString() const;
+    
     std::string returnString();
     
     
@@ -57,6 +59,8 @@ public:
     void x(T X);
     
     void y(T Y);
+    
+    Direction whichSide(const Location<T>& loc) const;
     
     
     Location operator+(Location location);
@@ -193,6 +197,37 @@ void Location<T>::y(T Y){
 
 
 
+template<class T>
+Direction Location<T>::whichSide(const Location<T>& loc) const{
+    
+    Location<T> temp(loc.x()-_x,loc.y()-_y);
+    
+    
+        
+    return    (temp == Node(0,1))?  N:
+    
+     (temp ==  Node(1,1))?  NE:
+     
+     (temp == Node(1,0))?  E:
+     
+     (temp == Node(1,-1))?  SE:
+     
+     (temp == Node(0,-1))?  S:
+        
+     (temp == Node(-1,-1))?  SW:
+     
+     (temp == Node(-1, 0))?  W: NW;
+    
+    }
+    
+    
+    
+
+
+
+
+
+
 
 
 template<class T>
@@ -309,12 +344,25 @@ bool  Location<T>::operator==(const Location& loc2) const{
 
 
 template<class T>
-std::string Location<T>::returnString(){
+std::string Location<T>::returnString() const{
     
     return "<" + std::to_string(_x) + ":" + std::to_string(_y) +">";
     
 }
 
+
+
+
+
+
+
+
+template<class T>
+std::string Location<T>::returnString(){
+    
+    return "<" + std::to_string(_x) + ":" + std::to_string(_y) +">";
+    
+}
 
 //template<class T>
 //std::ostream& operator<<(std::ostream& os, const Location<T>& me ){

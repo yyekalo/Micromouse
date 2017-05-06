@@ -62,6 +62,7 @@ public:
     
     std::vector<Node> getNeighbour(const Node& location);
     
+    std::vector<Node> getStoredNeighbour(const Node& location);
     
     void setExplored(const Node& location);
     
@@ -76,11 +77,14 @@ public:
     void addNode(const Node& toBeAdded);
     
     void addNode(const Node& toBeAdded, std::vector<Node> neighbour);
-
     
-private:
+    bool areNeighbours(const Node& a, const Node& b);
     
     bool isvalidNode(Node& node);
+
+
+    
+//private:
     
     void resetMaze();
     

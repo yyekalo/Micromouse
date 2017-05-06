@@ -93,7 +93,7 @@ void Maze::findPath(const Node& from, const Node& to){
 
 bool Maze::isvalidNode(Node& node){
     
-    return (node.x() < mazeWidth && node.x() > 0 ) && (node.y() < mazeHeight && node.y() > 0 );
+    return (node.x() <= mazeWidth && node.x() > 0 ) && (node.y() <= mazeHeight && node.y() > 0 );
     
 }
 
@@ -146,6 +146,18 @@ std::vector<Node> Maze::getNeighbour(const Node& location){
 
 
 
+std::vector<Node> Maze::getStoredNeighbour(const Node& location){
+    
+    return maze[location];
+}
+
+
+
+
+
+
+
+
 
 void Maze::setExplored(const Node& location){
     
@@ -187,9 +199,13 @@ void Maze::removeNeighbour(const Node& current, const Node& toBeRemoved){
 
 void Maze::addNeighbour(const Node& current, const Node& toBeAdded){
     
+    if (current != toBeAdded) {
+        
     maze[current].push_back(toBeAdded);
     maze[toBeAdded].push_back(current);
-    
+        
+        
+    }
 }
 
 
@@ -228,6 +244,19 @@ void Maze::addNode(const Node& toBeAdded){
 void Maze::addNode(const Node& toBeAdded, std::vector<Node> neighbour){
     
     maze.emplace(toBeAdded,neighbour);
+    
+}
+
+
+
+
+
+
+
+bool Maze::areNeighbours(const Node& a, const Node& b){
+   
+    return std::find(maze[a].begin(), maze[a].end(), b) != maze[a].end();
+    
     
 }
 
