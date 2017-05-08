@@ -48,10 +48,11 @@ using namespace std;
 
 int main(){
     
-    Node a(1,1);
-    Node b(5,6);
+  
+    Maze maze;
     
     
+    //maze.findPath(Node(5,5), Node(1,1));
     
     
     VirtualMaze mm;

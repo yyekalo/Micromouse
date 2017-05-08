@@ -13,12 +13,7 @@
 #include "Vector.h"
 #include <stack>
 
-union Magnitude {
-    
-    float f;
-    
-    int i;
-};
+
 
 
 
@@ -31,18 +26,24 @@ public:
     
     dirVector();
     
-    //dirVector();
+    dirVector(double mag, Direction dir);
     
     ~dirVector();
     
-    Magnitude getMag();
+    float Mag() const;
     
-    Direction getDir();
+    Direction Dir() const;
+    
+    void      Mag(float mag);
+    
+    void      Dir(Direction dir);
+    
+    Node      getNode(const Node& from);
     
     
 private:
     
-    Magnitude mag;
+    double mag;
     
     Direction dir;
     
@@ -55,18 +56,30 @@ class Path{
     
 public:
     
-    Path();
+    Path(Node start = Node(1,1));
     
     ~Path();
     
     dirVector  next();
     
+    Node       nextNode();
+    
     void add(dirVector toBeAdded);
     
+    void add(const Node& to);
+    
+    bool empty();
+    
+    int size();
+    
     dirVector  peek();
+    
+    Node start();
 
     
 private:
+    
+    Node lastNode;
     
     std::stack<dirVector>  path;
     

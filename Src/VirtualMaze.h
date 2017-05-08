@@ -11,9 +11,13 @@
 
 #include <stdio.h>
 #include <utility>
+#include <iostream>
+
+//my classes 
 #include "Maze.h"
 #include "Vector.h"
-#include <iostream>
+#include "Path.h"
+
 
 //grpahics
 #include <SFML/Graphics.hpp>
@@ -40,6 +44,10 @@ public:
     
     void wallToggled(int x, int y);
     
+    void randomRemoveNeigbour(const Node& loc);
+    
+    void generateMaze();
+    
     Node toScreen(const Node& location);
     
     std::vector<Direction> missingNeigbour(const Node& location);
@@ -50,15 +58,22 @@ public:
     
     void run();
     
+    void drawLine(const Node& from, const Node& to);
+    
+    Node getCenter(const Node& node);
+    
+    void drawPath(Path path);
+    
     
 private:
+    
+    void drawAll();
     
     void drawBackground();
     
     sf::RenderWindow window;
     
     sf::Event event;
-    
     
     Maze maze;
     

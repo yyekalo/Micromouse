@@ -28,6 +28,14 @@ Maze::~Maze(){
 
 
 
+
+
+
+std::unordered_map<Node,std::vector<Node>,NodeHasher>  Maze::getMaze() const{
+    
+    return maze;
+}
+
 //Manhatten style distance between two nodes
 float Maze::movementCost(const Node& from, const Node& to) const{
     
@@ -41,9 +49,31 @@ float Maze::movementCost(const Node& from, const Node& to) const{
 
 
 
+
+Path Maze::makePath(Path& path, const Node& destination){
+    
+    if (parent[path.start()]!=destination) {
+        
+        path.add(parent[path.start()]);
+    }
+    
+    return path;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 //ToDo have this return a path type
 //Need to creat path class.
-void Maze::findPath(const Node& from, const Node& to){
+Path Maze::findPath(const Node& from, const Node& to){
     
     PriorityQueue toBeExplored;
     
@@ -82,6 +112,34 @@ void Maze::findPath(const Node& from, const Node& to){
         }
     }
     
+    Node parfent = to;
+    
+   
+  
+    
+    std::cout <<"****************************"<< std::endl;
+    std::cout <<to.returnString()<< std::endl;
+    std::cout <<"****************************"<< std::endl;
+    
+    
+    while (true) {
+        
+    
+        std::cout << "from " << parfent.returnString() <<"  to " << parent[parfent].returnString() << std::endl;
+        
+        parfent = parent[parfent];
+        
+        if (parfent == from) {
+            std::cout <<"go here"<< std::endl;
+            break;
+        }
+        
+    }
+    
+    Path path(from);
+    
+    return makePath(path, to);
+    
 }
 
 
@@ -91,7 +149,7 @@ void Maze::findPath(const Node& from, const Node& to){
 
 
 
-bool Maze::isvalidNode(Node& node){
+bool Maze::isvalidNode(const Node& node){
     
     return (node.x() <= mazeWidth && node.x() > 0 ) && (node.y() <= mazeHeight && node.y() > 0 );
     
@@ -159,6 +217,64 @@ std::vector<Node> Maze::getStoredNeighbour(const Node& location){
 
 
 
+
+
+Node Maze::getNeigbour(const Node& a, Direction dir){
+    
+    switch (dir) {
+        case N:
+            return Node(a.x(),a.y()+1);
+            break;
+        case NE:
+            return Node(a.x()+1,a.y()+1);
+            break;
+        case E:
+            return Node(a.x()+1,a.y());
+            break;
+        case SE:
+            return Node(a.x()+1,a.y()-1);
+            break;
+        case S:
+            return Node(a.x(),a.y()-1);
+            break;
+        case SW:
+            return Node(a.x()-1,a.y()-1);
+            break;
+        case W:
+            return Node(a.x()-1,a.y());
+            break;
+        case NW:
+            return Node(a.x()-1,a.y()+1);
+            break;
+            
+    }
+    
+}
+
+
+
+
+
+
+
+
+bool Maze::isNeigbour(const Node& a, Direction dir){
+    
+    return areNeighbours(a, getNeigbour(a, dir));
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
 void Maze::setExplored(const Node& location){
     
     explored[location] = true;
@@ -185,8 +301,79 @@ bool Maze::isExplored(const Node& location)const{
 
 void Maze::removeNeighbour(const Node& current, const Node& toBeRemoved){
     
-    maze[current].erase(std::remove(maze[current].begin(), maze[current].end(), toBeRemoved), maze[current].end());
-    maze[toBeRemoved].erase(std::remove(maze[current].begin(), maze[current].end(), current), maze[current].end());
+    
+    
+    switch (current.whichSide(toBeRemoved)) {
+        case N:
+            
+            if (isNeigbour(current, E)) {
+                
+                removeNeighbour(current, getNeigbour(current, NE));
+                
+            } else if(isNeigbour(current, W)){
+                
+                removeNeighbour(current, getNeigbour(current, NW));
+                
+            }
+            
+            break;
+            
+        case E:
+            
+            if (isNeigbour(current, N)) {
+                
+                removeNeighbour(current, getNeigbour(current, NE));
+                
+            } else if(isNeigbour(current, S)){
+                
+                removeNeighbour(current, getNeigbour(current, SE));
+                
+            }
+            
+            break;
+        case S:
+            
+            if (isNeigbour(current, E)) {
+                
+                removeNeighbour(current, getNeigbour(current, SE));
+                
+            } else if(isNeigbour(current, W)){
+                
+                removeNeighbour(current, getNeigbour(current, SW));
+                
+            }
+            
+            break;
+        case W:
+            
+            if (isNeigbour(current, N)) {
+                
+                removeNeighbour(current, getNeigbour(current, NW));
+                
+            } else if(isNeigbour(current, W)){
+                
+                removeNeighbour(current, getNeigbour(current, NW));
+                
+            }
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+        
+        maze[current].erase(std::remove(maze[current].begin(), maze[current].end(), toBeRemoved), maze[current].end());
+        
+        
+        maze[toBeRemoved].erase(std::remove(maze[toBeRemoved].begin(), maze[toBeRemoved].end(), current), maze[toBeRemoved].end());
+        
+
+        
+        
+    
+    
+    
     
 }
 
@@ -199,7 +386,7 @@ void Maze::removeNeighbour(const Node& current, const Node& toBeRemoved){
 
 void Maze::addNeighbour(const Node& current, const Node& toBeAdded){
     
-    if (current != toBeAdded) {
+    if (current != toBeAdded && isvalidNode(current) && isvalidNode(toBeAdded)) {
         
     maze[current].push_back(toBeAdded);
     maze[toBeAdded].push_back(current);
@@ -255,7 +442,8 @@ void Maze::addNode(const Node& toBeAdded, std::vector<Node> neighbour){
 
 bool Maze::areNeighbours(const Node& a, const Node& b){
    
-    return std::find(maze[a].begin(), maze[a].end(), b) != maze[a].end();
+    return (std::find(maze[a].begin(), maze[a].end(), b) != maze[a].end()) |
+           (std::find(maze[b].begin(), maze[b].end(), a) != maze[b].end());
     
     
 }
@@ -271,10 +459,10 @@ void Maze::resetMaze(){
     
     std::vector<Node> neb;
     
-    for(int x = 0 ; x < mazeWidth ; x++ ){
+    for(int x = mazeWidth; x > 0  ; x-- ){
         
         
-        for (int y = 0 ; y< mazeHeight ; y++) {
+        for (int y = mazeHeight ; y >0 ; y--) {
             
             temp = Node(x,y);
             

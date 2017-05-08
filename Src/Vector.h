@@ -13,6 +13,8 @@
 #include <functional>
 #include <string>
 #include <stack>
+#include <iostream>
+#include <math.h>
 
 
 
@@ -61,6 +63,10 @@ public:
     void y(T Y);
     
     Direction whichSide(const Location<T>& loc) const;
+    
+    float    distance(const Location<T>& to) const;
+        
+        
     
     
     Location operator+(Location location);
@@ -200,28 +206,75 @@ void Location<T>::y(T Y){
 template<class T>
 Direction Location<T>::whichSide(const Location<T>& loc) const{
     
-    Location<T> temp(loc.x()-_x,loc.y()-_y);
+    int deltax = loc.x() - _x;
+    
+    int deltay = loc.y() - _y;
     
     
+    
+    if (deltax ==0 && deltay > 0 ) {
         
-    return    (temp == Node(0,1))?  N:
-    
-     (temp ==  Node(1,1))?  NE:
-     
-     (temp == Node(1,0))?  E:
-     
-     (temp == Node(1,-1))?  SE:
-     
-     (temp == Node(0,-1))?  S:
+        return N;
         
-     (temp == Node(-1,-1))?  SW:
-     
-     (temp == Node(-1, 0))?  W: NW;
-    
+    }
+    else if(deltax == 0 && deltay < 0){
+        
+        return S;
+        
+    }
+    else if(deltax > 0 && deltay == 0){
+        
+        return E;
+        
+    }
+    else if(deltax < 0 && deltay == 0){
+        
+        return W;
+        
+    } else if (abs(deltay) == abs(deltax)){
+        
+        if (deltax > 0 && deltay > 0 ) {
+            
+            return NE;
+            
+        }
+        else if(deltax > 0 && deltay < 0){
+            
+            return SE;
+            
+        }
+        else if(deltax < 0 && deltay < 0){
+            
+            return SW;
+            
+        }
+        else if(deltax < 0 && deltay > 0){
+            
+            return NW;
+            
+        }
     }
     
+    //TODO: hundle this error
+    return NW;
     
+}
+
+
+
+
+
+
+
+
+
+template<class T>
+float    Location<T>::distance(const Location<T>& to) const{
     
+    return float(sqrt(pow(abs(_x-to.x()),2) + pow(abs(_y-to.y()),2)));
+
+}
+
 
 
 

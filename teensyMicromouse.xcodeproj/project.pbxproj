@@ -67,9 +67,9 @@
 			isa = PBXGroup;
 			children = (
 				A6E2270D1EAC1A4E00BA3F40 /* main.cpp */,
-				A69087E81EBC749000A35895 /* VirtualMaze.cpp */,
 				A605E04C1EBDD6B400A2029A /* Path.cpp */,
 				A605E04D1EBDD6B400A2029A /* Path.h */,
+				A69087E81EBC749000A35895 /* VirtualMaze.cpp */,
 				A69087E91EBC749000A35895 /* VirtualMaze.h */,
 				A69087EB1EBC752B00A35895 /* Maze.cpp */,
 				A69087EC1EBC752B00A35895 /* Maze.h */,

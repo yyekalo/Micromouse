@@ -10,7 +10,7 @@
 #define Maze_hpp
 
 #include <stdio.h>
-#include "Vector.h"
+
 #include <unordered_map>
 #include <vector>
 #include <queue>
@@ -20,10 +20,16 @@
 #include <iostream>
 
 
+//My own classess
+#include "Vector.h"
+#include "Path.h"
+
 #define mazeHeight 16
 #define mazeWidth 16
 
-/*This queue wraper struct code and the findPath function which implment the A* algorithm is also adaptation form Amit Patel @ https://twitter.com/redblobgames
+/*This queue wraper struct code and the findPath function 
+ which implment the A* algorithm is also adaptation from
+ Amit Patel @ https://twitter.com/redblobgames
 
  */
 struct PriorityQueue {
@@ -56,13 +62,21 @@ public:
     
     ~Maze();
     
+    std::unordered_map<Node,std::vector<Node>,NodeHasher>  getMaze() const;
+    
     float movementCost(const Node& from, const Node& to) const;
     
-    void findPath(const Node& from , const Node& to );
+    Path makePath(Path& path,const Node& destination);
+    
+    Path findPath(const Node& from , const Node& to );
     
     std::vector<Node> getNeighbour(const Node& location);
     
     std::vector<Node> getStoredNeighbour(const Node& location);
+    
+    bool isNeigbour(const Node& a, Direction dir);
+    
+    Node getNeigbour(const Node& a, Direction dir);
     
     void setExplored(const Node& location);
     
@@ -80,13 +94,15 @@ public:
     
     bool areNeighbours(const Node& a, const Node& b);
     
-    bool isvalidNode(Node& node);
-
-
-    
-//private:
+    bool isvalidNode(const Node& node);
     
     void resetMaze();
+    
+    
+    
+private:
+    
+    
     
     std::unordered_map<Node,std::vector<Node>,NodeHasher> maze;
     
@@ -96,9 +112,6 @@ public:
     
     std::unordered_map<Node, bool,NodeHasher>  explored;
 
-    
-    
-    
 };
 
 
