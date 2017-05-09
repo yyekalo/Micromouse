@@ -12,12 +12,7 @@
 #include <stdio.h>
 #include "Vector.h"
 #include <stack>
-
-
-
-
-
-
+#include <assert.h>
 
 
 class dirVector {
@@ -39,6 +34,8 @@ public:
     void      Dir(Direction dir);
     
     Node      getNode(const Node& from);
+    
+    
     
     
 private:
@@ -74,7 +71,11 @@ public:
     
     dirVector  peek();
     
+    Node  peekNode();
+    
     Node start();
+    
+    void print();
 
     
 private:

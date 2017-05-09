@@ -66,9 +66,11 @@ public:
     
     float movementCost(const Node& from, const Node& to) const;
     
-    Path makePath(Path& path,const Node& destination);
     
-    Path findPath(const Node& from , const Node& to );
+    bool mazeExplored();
+    
+    
+    Path findPath(const Node& from , const Node& to , bool diagnoalAllowed = true );
     
     std::vector<Node> getNeighbour(const Node& location);
     
@@ -84,6 +86,8 @@ public:
     
     void removeNeighbour(const Node& current, const Node& toBeRemoved);
     
+    void removeNeighbour(const Node& current, Direction dir);
+    
     void addNeighbour(const Node& current, const Node& toBeAdded);
     
     void removeNode(const Node& toBeRemoved);
@@ -98,19 +102,22 @@ public:
     
     void resetMaze();
     
+    void print(const Node& temp);
+    
+    
+    
     
     
 private:
     
-    
+    void _removeNeighbour(const Node& current, const Node& toBeRemoved);
     
     std::unordered_map<Node,std::vector<Node>,NodeHasher> maze;
     
-    std::unordered_map<Node, float,NodeHasher>  cost;
-    
-    std::unordered_map<Node, Node,NodeHasher>  parent;
     
     std::unordered_map<Node, bool,NodeHasher>  explored;
+
+
 
 };
 

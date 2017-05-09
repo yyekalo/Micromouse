@@ -255,6 +255,9 @@ void Path::add(dirVector toBeAdded){
 
 Node       Path::nextNode(){
     
+    //assert(empty());
+    
+    
     Node temp = path.top().getNode(lastNode);
    
     path.pop();
@@ -301,6 +304,21 @@ dirVector  Path::peek(){
 
 
 
+Node  Path::peekNode(){
+    
+    
+    return peek().getNode(start());
+    
+}
+
+
+
+
+
+
+
+
+
 
 bool Path::empty(){
     
@@ -334,6 +352,42 @@ Node Path::start(){
 }
 
 
+
+
+
+
+
+
+
+void Path::print(){
+    
+    std::stack<dirVector>  tempPath = path;
+    
+    Node tempNode =  lastNode;
+    
+    
+    std::cout << lastNode.returnString() << " -> " ;
+    
+    while (!tempPath.empty()) {
+        
+        
+        
+        tempNode = tempPath.top().getNode(tempNode);
+        
+        tempPath.pop();
+        
+        
+
+        
+        std::cout << tempNode.returnString() <<  " -> " ;
+        
+        
+    }
+    
+    std::cout << std::endl;
+
+    
+}
 
 
 

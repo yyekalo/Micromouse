@@ -40,6 +40,8 @@ public:
     
     ~VirtualMaze();
     
+    Node getNode(int x, int y);
+    
     nPair getPair(int x, int y);
     
     void wallToggled(int x, int y);
@@ -52,17 +54,30 @@ public:
     
     std::vector<Direction> missingNeigbour(const Node& location);
     
-    void drawWall(const Node& location, Direction side);
+    void drawWall(const Node& location, Direction side, sf::Color color = sf::Color::Red);
     
     void drawMaze();
     
     void run();
     
-    void drawLine(const Node& from, const Node& to);
+    void drawLine(const Node& from, const Node& to, sf::Color color);
     
     Node getCenter(const Node& node);
     
-    void drawPath(Path path);
+    void drawPath(Path path,sf::Color color = sf::Color::Green);
+    
+    void deletePath(Path path);
+    
+    bool isWall(const Node& direction, Direction dir );
+    
+    void drawMaze(Maze maze, sf::Color color=sf::Color::Red);
+    
+    Node followUntilbroken(Maze& maze, Path path);
+    
+    void VirtualBot();
+    
+    void drawNode(Node node);
+    
     
     
 private:
@@ -75,7 +90,17 @@ private:
     
     sf::Event event;
     
+    Path _path;
+    
     Maze maze;
+    
+    bool dynamic;
+    
+    bool virtualbot;
+    
+    Maze botMaze;
+    
+    Path alreadyTravledPath;
     
 };
 
