@@ -29,6 +29,10 @@ public:
     
     Direction Dir() const;
     
+    bool operator==(dirVector dirvec);
+    
+    bool operator!=(dirVector dirvec);
+    
     void      Mag(float mag);
     
     void      Dir(Direction dir);
@@ -48,7 +52,7 @@ private:
 
 
 
-
+//ToDo overload < > operators to calcualte which path is the fastest
 class Path{
     
 public:
@@ -60,6 +64,10 @@ public:
     dirVector  next();
     
     Node       nextNode();
+    
+    bool operator==(Path node);
+    
+    bool operator!=(Path node);
     
     void add(dirVector toBeAdded);
     

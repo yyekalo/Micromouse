@@ -99,6 +99,7 @@ void VirtualMaze::wallToggled(int x, int y){
     
     nPair temp = getPair(x,y);
     
+    std::cout << "**********" << temp.first.returnString() << temp.second.returnString() << "**********" << std::endl;
     
     if( maze.areNeighbours(temp.first, temp.second)){
         
@@ -202,6 +203,8 @@ Node VirtualMaze::toScreen(const Node& location){
     
     
 }
+
+
 
 
 
@@ -418,7 +421,7 @@ void VirtualMaze::drawAll(){
     
     drawBackground();
     
-    drawMaze();
+    
     
     if (virtualbot) {
         
@@ -426,6 +429,16 @@ void VirtualMaze::drawAll(){
         drawPath(alreadyTravledPath,sf::Color::Green);
         
     }
+    
+    if (onlybot) {
+        
+        drawMaze(botMaze);
+        
+    }else{
+        
+        drawMaze();
+    }
+    
     
     drawPath(_path,sf::Color::White);
     
@@ -494,12 +507,12 @@ void VirtualMaze::run(){
                         
                     }
                     
-                    if (event.key.code == sf::Keyboard::C){
+                    if (event.key.code == sf::Keyboard::O){
                         
                         
-                        maze.resetMaze();
+                        onlybot = true;
                         
-                        _path = Path(Node(0,0));
+                        std::cout << "helow" << std::endl;
                         
                         drawAll();
                       
@@ -738,6 +751,13 @@ Node VirtualMaze::followUntilbroken(Maze& maze, Path path){
             
         }
         
+        if (isWall(currentNode, S)) {
+            
+            maze.removeNeighbour(currentNode, S);
+            
+            std::cout <<"discovered S wall" <<  std::endl;
+            
+        }
         
         if (isWall(currentNode, W)) {
             
@@ -773,26 +793,17 @@ Node VirtualMaze::followUntilbroken(Maze& maze, Path path){
         drawAll();
         
         
-//        maze.print(Node(1,1));
-//        std::cout <<"###############" <<  std::endl;
-
-        
-        //std::cout <<"next node" << path.peekNode().returnString() <<  std::endl;
-        
         maze.print(currentNode);
         
-        std::cout <<"###############" <<  std::endl;
         
         if (isWall(currentNode, currentNode.whichSide(path.peekNode()))) {
             
-            std::cout <<"over and returned " <<  currentNode.returnString() << std::endl;
             
             return currentNode;
             
         }
         
-        std::cout <<"###############" <<  std::endl;
-
+       
         
         currentNode = path.nextNode();
     }
@@ -828,15 +839,16 @@ void VirtualMaze::VirtualBot(){
     
     Path imagPath;
     
-    while (currentNode != center) {
+    while ((currentNode != center ) ) {
         
     
     
-    imagPath = botMaze.findPath(currentNode, center);
+    imagPath = botMaze.findPath(currentNode, center,false);
 
         _path = imagPath;
         
-        imagPath.print();
+       
+        //imagPath.print();
         
         
         
@@ -845,7 +857,7 @@ void VirtualMaze::VirtualBot(){
         alreadyTravledPath = botMaze.findPath(original, currentNode,false);
 
         
-        usleep(1100000);
+        usleep(700000);
         
     }
     

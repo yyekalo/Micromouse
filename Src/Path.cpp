@@ -86,6 +86,35 @@ Direction dirVector::Dir() const{
 
 
 
+bool dirVector::operator==(dirVector dirvec){
+    
+    return mag == dirvec.mag && dir == dirvec.dir;
+    
+}
+
+
+
+
+
+
+
+
+
+bool dirVector::operator!=(dirVector dirvec){
+    
+    return mag != dirvec.mag || dir != dirvec.dir;
+
+    
+}
+
+
+
+
+
+
+
+
+
 void      dirVector::Mag(float mag){
     
     this -> mag = mag;
@@ -267,6 +296,86 @@ Node       Path::nextNode(){
     return temp;
     
 }
+
+
+
+
+
+
+
+
+
+bool Path::operator==(Path node){
+    
+    if (node.size()!=path.size()) {
+        
+        return false;
+        
+    }
+    
+    std::stack<dirVector>  temp1 = path;
+    
+    std::stack<dirVector>  temp2 = node.path;
+    
+    while (temp1.empty() || temp2.empty()) {
+        
+        if (temp2.top() != temp1.top()) {
+            
+            return false;
+        }
+        
+        temp1.pop();
+        
+        temp2.pop();
+        
+    }
+   
+    
+    return true;
+    
+}
+
+
+
+
+
+
+
+
+bool Path::operator!=(Path node){
+    
+    if (node.size()!=path.size()) {
+        
+        return true;
+        
+    }
+    
+    std::stack<dirVector>  temp1 = path;
+    
+    std::stack<dirVector>  temp2 = node.path;
+    
+    //TODO
+    
+//    while (temp1.empty() || temp2.empty()) {
+//        
+//        if (temp2.top() == temp1.top()) {
+//            
+//            return true;
+//        }
+//        
+//        temp1.pop();
+//        
+//        temp2.pop();
+//        
+//    }
+//    
+    
+    return false;
+    
+}
+
+
+
 
 
 

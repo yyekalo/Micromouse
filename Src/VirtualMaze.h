@@ -98,6 +98,8 @@ private:
     
     bool virtualbot;
     
+    bool onlybot;
+    
     Maze botMaze;
     
     Path alreadyTravledPath;
