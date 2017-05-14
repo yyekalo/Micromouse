@@ -58,7 +58,7 @@ dirVector::~dirVector(){
 
 
 
-float dirVector::Mag() const{
+double dirVector::Mag() const{
     
     return mag;
     
@@ -115,7 +115,7 @@ bool dirVector::operator!=(dirVector dirvec){
 
 
 
-void      dirVector::Mag(float mag){
+void      dirVector::setMag(double mag){
     
     this -> mag = mag;
     
@@ -266,6 +266,37 @@ dirVector  Path::next(){
 
 
 
+
+
+
+
+
+
+
+
+Node       Path::nextNode(){
+    
+    //assert(empty());
+    
+    
+    Node temp = path.top().getNode(lastNode);
+    
+    path.pop();
+    
+    lastNode = temp;
+    
+    return temp;
+    
+}
+
+
+
+
+
+
+
+
+
 void Path::add(dirVector toBeAdded){
     
     path.push(toBeAdded);
@@ -282,19 +313,14 @@ void Path::add(dirVector toBeAdded){
 
 
 
-Node       Path::nextNode(){
+
+
+void Path::add(const Node& to){
     
-    //assert(empty());
     
+    add(dirVector(lastNode.distance(to), lastNode.whichSide(to)));
     
-    Node temp = path.top().getNode(lastNode);
-   
-    path.pop();
-    
-    lastNode = temp;
-    
-    return temp;
-    
+    lastNode = to;
 }
 
 
@@ -342,6 +368,9 @@ bool Path::operator==(Path node){
 
 
 
+
+
+
 bool Path::operator!=(Path node){
     
     if (node.size()!=path.size()) {
@@ -354,7 +383,7 @@ bool Path::operator!=(Path node){
     
     std::stack<dirVector>  temp2 = node.path;
     
-    //TODO
+    //TODO: finish emplimenting this
     
 //    while (temp1.empty() || temp2.empty()) {
 //        
@@ -374,23 +403,6 @@ bool Path::operator!=(Path node){
     
 }
 
-
-
-
-
-
-
-
-
-
-
-void Path::add(const Node& to){
-    
-    
-    add(dirVector(lastNode.distance(to), lastNode.whichSide(to)));
-    
-    lastNode = to;
-}
 
 
 

@@ -9,12 +9,10 @@
 #ifndef Vector_hpp
 #define Vector_hpp
 
-#include <stdio.h>
+#include <iostream>   //for printing Nodes
 #include <functional>
-#include <string>
-#include <stack>
-#include <iostream>
-#include <math.h>
+#include <string>      //to cast Node T type(float or anything)  to string for printing
+#include <math.h>    // for sqrt to find the distance between two Nodes
 
 
 
@@ -98,7 +96,63 @@ private:
 //Location(position)  of a cell(node)
 typedef Location<int> Node;
 //abslute coordinate of the mouse in the maze
-typedef Location<float> position;
+typedef Location<float> Position;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Direction& operator++(Direction& dir){
+    
+    
+    if (dir==NW) {
+        
+        dir = N;
+        
+        return dir;
+    }
+    
+    dir = static_cast<Direction>(dir+1);
+    
+    return dir;
+    
+}
+
+
+
+
+
+
+
+
+
+Direction operator++(Direction& dir,int){
+    
+    
+    Direction original = dir;
+    
+    ++dir;
+    
+    return original;
+    
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -409,7 +463,7 @@ std::string Location<T>::returnString() const{
 
 
 
-
+//TODO: overload<< operator so nodes can easly be printed
 template<class T>
 std::string Location<T>::returnString(){
     

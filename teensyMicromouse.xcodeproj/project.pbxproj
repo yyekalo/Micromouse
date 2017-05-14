@@ -70,14 +70,14 @@
 			isa = PBXGroup;
 			children = (
 				A6E2270D1EAC1A4E00BA3F40 /* main.cpp */,
-				A605E04C1EBDD6B400A2029A /* Path.cpp */,
-				A605E04D1EBDD6B400A2029A /* Path.h */,
 				A69087E81EBC749000A35895 /* VirtualMaze.cpp */,
 				A69087E91EBC749000A35895 /* VirtualMaze.h */,
 				A605E04F1EC7324900A2029A /* Mouse.cpp */,
 				A605E0501EC7324900A2029A /* Mouse.h */,
 				A69087EB1EBC752B00A35895 /* Maze.cpp */,
 				A69087EC1EBC752B00A35895 /* Maze.h */,
+				A605E04C1EBDD6B400A2029A /* Path.cpp */,
+				A605E04D1EBDD6B400A2029A /* Path.h */,
 				A6E227091EAC18CB00BA3F40 /* Vector.h */,
 				A6A793971EA0412F00DE5EF7 /* teensyMicromouse */,
 				A6A793961EA0412F00DE5EF7 /* Products */,
@@ -272,8 +272,13 @@
 		A6A7939D1EA0412F00DE5EF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"$(SRCROOT)SFML/include",
+				);
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
+					"<Multiple",
+					"values>",
 					"$(PROJECT_DIR)/SFML/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -283,8 +288,13 @@
 		A6A7939E1EA0412F00DE5EF7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"$(SRCROOT)SFML/include",
+				);
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
+					"<Multiple",
+					"values>",
 					"$(PROJECT_DIR)/SFML/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
