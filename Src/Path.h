@@ -9,14 +9,10 @@
 #ifndef Path_hpp
 #define Path_hpp
 
-
+#include <stdio.h>
 #include "Vector.h"
 #include <stack>
-
-
-
-
-
+#include <assert.h>
 
 
 class dirVector {
@@ -29,7 +25,7 @@ public:
     
     ~dirVector();
     
-    double Mag() const;
+    float Mag() const;
     
     Direction Dir() const;
     
@@ -37,7 +33,7 @@ public:
     
     bool operator!=(dirVector dirvec);
     
-    void      setMag(double mag);
+    void      Mag(float mag);
     
     void      Dir(Direction dir);
     
@@ -69,13 +65,13 @@ public:
     
     Node       nextNode();
     
-    void add(dirVector toBeAdded);
-    
-    void add(const Node& to);
-    
     bool operator==(Path node);
     
     bool operator!=(Path node);
+    
+    void add(dirVector toBeAdded);
+    
+    void add(const Node& to);
     
     bool empty();
     

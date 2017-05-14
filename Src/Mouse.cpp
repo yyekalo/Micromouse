@@ -22,7 +22,7 @@
 //
 //
 //
-//Mouse::Mouse(Position currentPosition, Direction currentDirection, Node intCenter){
+//Mouse::Mouse(Node currentPosition, Direction currentDirection, Node intCenter){
 //    
 //    position = currentPosition;
 //    
@@ -52,139 +52,10 @@
 //
 //
 //
-//Node Mouse::getPosition(){
-//    
-//    return Node(ceil(position.x()/cellSide),ceil(position.y()/cellSide));
-//    
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//Position Mouse::getFloatPosition(){
-//    
-//    return position;
-//    
-//    
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//void Mouse::setPosition(Node newPosition){
-//    
-//    position = position;
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//void Mouse::setPosition(Position newPosition){
-//    
-//    position = newPosition;
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//Direction Mouse::getHeading(){
-//    
-//    return static_cast<Direction>( heading / 45);;
-//    
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//float Mouse::getFloatHeading(){
-//    
-//    return heading;
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//void Mouse::setHeading(Direction newHeading){
-//    
-//    heading = float(newHeading * 45);
-//    
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//void Mouse::setHeading(float newHeading){
-//    
-//    heading = newHeading;
-//    
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //bool Mouse::isWall(Direction dir){
 //    
-//    
-//    
-//    
 //    return true;
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//void Mouse::faceDir(Direction dir){
-//    
-//    std::cout << "SSDF"<<std::endl;
 //    
 //}
 //
@@ -194,9 +65,19 @@
 //
 //
 //
-//void Mouse::Move(dirVector dir){
+//void faceDir(Direction dir){
 //    
-//     std::cout << "SSDF"<<std::endl;
+//    
+//    
+//}
+//
+//
+//
+//
+//
+//
+//
+//void Move(dirVector dir){
 //    
 //}
 //
@@ -209,7 +90,7 @@
 //
 //bool Mouse::exploreMaze(){
 //    
-//    Path temp = maze.findPath(getPosition(), center);
+//    Path temp = maze.findPath(position, center);
 //    
 //    
 //    while (!temp.empty()) {
@@ -217,13 +98,16 @@
 //        
 //         followUntillBroken(temp);
 //        
-//        temp = maze.findPath(getPosition(), center);
+//        temp = maze.findPath(position, center);
 //        
 //        
 //        
 //    }
-//
-//    return (getPosition() == center);
+//    
+//    
+//    
+//    return true;
+//    
 //    
 //}
 //
@@ -238,15 +122,8 @@
 //    
 //    
 //    
-//    while (!path.empty()) {
-//        
-//        Move(path.next());
-//        
-//        
-//    }
 //    
 //    
-//    //TODO: make return true if tranversed the whole path
 //    return true;
 //    
 //    
@@ -262,42 +139,40 @@
 //
 //bool Mouse::followUntillBroken(Path path){
 //    
-//   Node nextPosition;
-//    
-//    while (path.empty()) {
-//        
-//      nextPosition = path.nextNode();
+//   Node nextPosition = path.nextNode();
 //    
 //    if (isWall(E)) {
 //        
-//        maze.removeNeighbour(getPosition(), E);
+//        maze.removeNeighbour(position, E);
 //    }
 //    
 //    
 //    
 //    if (isWall(W)) {
 //        
-//        maze.removeNeighbour(getPosition(), W);
+//        maze.removeNeighbour(position, W);
 //        
 //    }
 //    
 //    
 //    
-//    if(isWall(getPosition().whichSide(nextPosition))){
+//    if(isWall(position.whichSide(nextPosition))){
 //        
-//        maze.removeNeighbour(getPosition(), nextPosition);
+//        maze.removeNeighbour(position, nextPosition);
 //        
 //        return false;
 //    }
 //    
 //    
-//    Move(dirVector(getPosition().distance(nextPosition), getPosition().whichSide(nextPosition)));
-//        
-//      
+//    Move(<#dirVector dir#>)
 //    
-//    }
 //    
-//    return true;
+//    
+//    
+//    
+//    
+//    
+//    
 //    
 //    
 //}

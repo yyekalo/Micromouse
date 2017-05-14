@@ -30,11 +30,16 @@
 using namespace std;
 
 //My own includes
-//#include "Vector.h"
-//#include "Maze.h"
-//#include "VirtualMaze.h"
+#include "Vector.h"
+#include "Maze.h"
+#include "VirtualMaze.h"
 
-
+void print(Maze maze, Node node){
+    
+    for(auto temp :maze.getStoredNeighbour(node))
+        
+        std::cout << temp.returnString()  << std::endl;
+}
 
 
 
@@ -60,7 +65,7 @@ int main(){
     
   
    
-   // VirtualMaze mm;
+    VirtualMaze mm;
     
     
     

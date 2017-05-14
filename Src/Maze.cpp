@@ -127,11 +127,6 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
             
             float newCost = cost[currentNode] +  movementCost(currentNode, neighbour);
             
-            //std::cout << "cost " << cost[currentNode] << std::endl;
-
-            
-            //std::cout << "cost " << cost[currentNode] << " newcost " << newCost <<" current neibour cost " << cost[neighbour] << std::endl;
-
             
             if ( !cost.count(neighbour) || newCost < cost[neighbour]) {
                 
@@ -140,9 +135,7 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
                 cost[neighbour] = newCost;
                 
                 float priority = newCost + movementCost(neighbour, to);
-                
-//                std::cout << "currentNode " << currentNode.returnString() << " neibour " << neighbour.returnString() << "Parent" << parent[neighbour].returnString() << std::endl;
-//                
+                                
                 toBeExplored.put(neighbour, priority);
                 
                 
@@ -169,7 +162,7 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
     
     explored.clear();
     
-    return path;  //makePath(from, to);
+    return path;  
     
 }
 
