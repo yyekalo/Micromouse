@@ -12,12 +12,7 @@
 #include <stdio.h>
 #include "Vector.h"
 #include <stack>
-
-
-
-
-
-
+#include <assert.h>
 
 
 class dirVector {
@@ -34,11 +29,17 @@ public:
     
     Direction Dir() const;
     
+    bool operator==(dirVector dirvec);
+    
+    bool operator!=(dirVector dirvec);
+    
     void      Mag(float mag);
     
     void      Dir(Direction dir);
     
     Node      getNode(const Node& from);
+    
+    
     
     
 private:
@@ -51,7 +52,7 @@ private:
 
 
 
-
+//ToDo overload < > operators to calcualte which path is the fastest
 class Path{
     
 public:
@@ -64,6 +65,10 @@ public:
     
     Node       nextNode();
     
+    bool operator==(Path node);
+    
+    bool operator!=(Path node);
+    
     void add(dirVector toBeAdded);
     
     void add(const Node& to);
@@ -74,7 +79,11 @@ public:
     
     dirVector  peek();
     
+    Node  peekNode();
+    
     Node start();
+    
+    void print();
 
     
 private:
