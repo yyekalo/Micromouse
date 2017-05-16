@@ -104,6 +104,14 @@ typedef Location<float> position;
 
 
 
+
+
+
+
+
+
+
+
 template<class T>
 Location<T>::Location(){
     
