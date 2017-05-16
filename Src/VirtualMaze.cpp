@@ -16,8 +16,6 @@ VirtualMaze::VirtualMaze(){
     
     dynamic = false;
     
-    virtualbot = false;
-    
     start = Node(1,1);
     
     end = Node(8,8);
@@ -28,7 +26,8 @@ VirtualMaze::VirtualMaze(){
     
     window.display();
     
-    run();
+    
+    //run();
 }
 
 
@@ -222,16 +221,16 @@ Node VirtualMaze::toScreen(const Node& location){
 
 
 
-std::vector<Direction> VirtualMaze::missingNeigbour(const Node& location){
+std::vector<Direction> VirtualMaze::missingNeigbour(const Node& location, Maze inmaze){
     
     std::vector<Direction>  temp;
     Direction side;
     
     
     
-    for(auto neigbour : maze.getNeighbour(location)){
+    for(auto neigbour : inmaze.getNeighbour(location)){
         
-        if(!maze.areNeighbours(location, neigbour)){
+        if(!inmaze.areNeighbours(location, neigbour)){
             
             side = location.whichSide(neigbour);
             
@@ -330,14 +329,15 @@ void VirtualMaze::drawWall(const Node& location, Direction side,sf::Color color)
 
 
 
-void VirtualMaze::drawMaze(){
+void VirtualMaze::drawMaze(sf::Color color){
+    
     
    
     for(auto pair : maze.getMaze()){
         
-        for(auto dir : missingNeigbour(pair.first)){
+        for(auto dir : missingNeigbour(pair.first,maze)){
             
-            drawWall(pair.first, dir,sf::Color::Magenta);
+            drawWall(pair.first, dir,color);
         }
 
         
@@ -429,24 +429,7 @@ void VirtualMaze::drawAll(){
     
     drawBackground();
     
-    
-    
-    if (virtualbot) {
-        
-        drawMaze(botMaze);
-        drawPath(alreadyTravledPath,sf::Color::Blue);
-        
-    }
-    
-    if (onlybot) {
-        
-        drawMaze(botMaze);
-        
-    }else{
-        
-        drawMaze();
-    }
-    
+    drawMaze();
     
     drawPath(_path,sf::Color::White);
     
@@ -467,12 +450,12 @@ void VirtualMaze::run(){
     
   
     
-    while (window.isOpen()) {
+    while (window.isOpen() && escapeRun) {
         
         
        
         
-        while (window.pollEvent(event)) {
+        while (window.pollEvent(event)&& escapeRun) {
             
             
             
@@ -514,33 +497,6 @@ void VirtualMaze::run(){
                         
                     }
                     
-                    if (event.key.code == sf::Keyboard::O){
-                        
-                        
-                        onlybot = true;
-                        
-                        
-                        drawAll();
-                      
-                        
-                    }
-                    
-                    
-                    
-                    
-                    if (event.key.code == sf::Keyboard::D){
-                        
-                        dynamic = !dynamic;
-                        
-                        _path = maze.findPath(start, end);
-                        
-                        drawAll();
-                        
-                    }
-                    
-                    
-                    
-                    
                     if (event.key.code == sf::Keyboard::C){
                         
                         
@@ -556,13 +512,33 @@ void VirtualMaze::run(){
                         
                     }
                     
+                    if (event.key.code == sf::Keyboard::D){
+                        
+                        dynamic = !dynamic;
+                        
+                        _path = maze.findPath(start, end);
+                        
+                        drawAll();
+                        
+                    }
                     
                     
+                    
+                    
+                    
+                    
+                    
+                    
+                    if (event.key.code == sf::Keyboard::R){
+                        
+                        
+                        escapeRun = false;
+                        
+                    }
                     
                     
                     if (event.key.code == sf::Keyboard::V){
                         
-                        virtualbot = true;
                         
                         VirtualBot();
                         
@@ -602,6 +578,10 @@ void VirtualMaze::run(){
                        
                         
                     }
+                    
+                    
+                    
+                   
                     
                     break;
                     
@@ -725,9 +705,15 @@ void VirtualMaze::drawMaze(Maze inmaze, sf::Color color){
     
     for(auto pair : inmaze.getMaze()){
         
-        for(auto dir : missingNeigbour(pair.first)){
+        
+        
+        for(auto dir : missingNeigbour(pair.first,inmaze)){
             
             drawWall(pair.first, dir, color);
+            
+           // std::cout << "drawing a wall at " << pair.first.returnString() << " with side " << dir <<std::endl;
+            
+            
         }
         
         
@@ -736,6 +722,16 @@ void VirtualMaze::drawMaze(Maze inmaze, sf::Color color){
     
     
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -826,7 +822,7 @@ Node VirtualMaze::followUntilbroken(Maze& maze, Path path){
          botMaze = maze;
         
         
-        drawAll();
+        drawVirtual();
         
         
         maze.print(currentNode);
@@ -873,22 +869,25 @@ void VirtualMaze::VirtualBot(){
     
     Node currentNode = start;
     
-    Path imagPath;
-    
-    while ((currentNode != center ) ) {
+    while (currentNode != center ) {
         
     
     
-    imagPath = botMaze.findPath(currentNode, center,false);
+   
+        
+      _path =  botMaze.findPath(currentNode, center,false);
 
-        _path = imagPath;
-        
        
-        //imagPath.print();
+       
+        if (_path.start() == Node(0,0)) {
+            
+            std::cout <<"No path to find"<< std::endl;
+            return ;
+        }
         
         
         
-      currentNode =   followUntilbroken(botMaze, imagPath);
+      currentNode =   followUntilbroken(botMaze, _path);
         
         alreadyTravledPath = maze.findPath(original, currentNode,false);
 
@@ -897,7 +896,7 @@ void VirtualMaze::VirtualBot(){
         
     }
     
-    
+
     
     std::cout <<"Done found the path"<< std::endl;
     
@@ -928,3 +927,66 @@ void VirtualMaze::drawNode(Node node){
 
 
 
+
+
+void VirtualMaze::clear(){
+    
+    window.clear();
+    
+    drawBackground();
+    
+}
+
+
+
+
+
+
+
+
+
+void VirtualMaze::display(){
+    
+    window.display();
+    
+}
+
+
+
+
+
+
+
+
+void VirtualMaze::dump(){
+    
+    if (window.waitEvent(event)) {
+        
+        std::cout << "EW" <<std::endl;
+    }
+}
+
+
+
+
+
+
+
+void VirtualMaze::drawVirtual(){
+    
+    window.clear();
+    
+    drawBackground();
+    
+    drawMaze(sf::Color::Color(0,255,255,50));
+    
+    drawMaze(botMaze,sf::Color::Red);
+    
+    drawPath(alreadyTravledPath,sf::Color::Green);
+    
+    drawPath(_path,sf::Color::White);
+    
+    window.display();
+    
+    
+}

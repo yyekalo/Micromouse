@@ -63,9 +63,25 @@ void print(Maze maze, Node node){
 
 int main(){
     
-  
+    
+    VirtualMaze temp;
+    
+    temp.generateMaze();
+    
+    temp.run();
    
-    VirtualMaze mm;
+    
+    temp.drawAll();
+    
+    temp.dump();
+    
+    cout << temp.isWall(Node(1,1), E)<< endl;
+    
+    while (true) {
+        
+    }
+    
+    
     
     
     

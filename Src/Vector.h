@@ -31,7 +31,19 @@ enum Direction {
     
 };
 
-
+//Direction& operator++(Direction& orig){
+//
+//
+//   // orig =  ( static_cast<int>(orig) == static_cast<int>(NW))? N: static_cast<Direction>(orig+1);
+////
+////    if (orig==N) {
+////
+////    }
+//
+//
+//    return orig;
+//
+//}
 
 
 
@@ -98,13 +110,31 @@ private:
 //Location(position)  of a cell(node)
 typedef Location<int> Node;
 //abslute coordinate of the mouse in the maze
-typedef Location<float> position;
+typedef Location<float> Position;
 
 
 
 
+//TODO: get this linker error working
 
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//Direction operator++(Direction& orig , int){
+//    
+//    Direction temp = orig;
+//    
+//    ++orig;
+//    
+//    return temp;
+//    
+//}
 
 
 

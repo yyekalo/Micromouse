@@ -22,13 +22,13 @@ Mouse::Mouse(){
 
 
 
-Mouse::Mouse(Node currentPosition, Direction currentDirection, Node intCenter){
+Mouse::Mouse(Position currentPosition, Direction currentDirection, Node intCenter){
     
-    position = currentPosition;
+    _position = currentPosition;
     
-    center = intCenter;
+    _center = intCenter;
     
-    heading = currentDirection;
+    _heading = currentDirection;
     
     maze = Maze();
     
@@ -52,11 +52,102 @@ Mouse::~Mouse(){
 
 
 
+Position Mouse::position(){
+    
+    return _position;
+}
 
-bool Mouse::isWall(Direction dir){
+
+
+
+
+
+
+Node      Mouse::positionNode(){
+    
+    return Node(_position.x() / sideWidth , _position.y() / sideWidth);
+    
+}
+
+
+
+
+
+
+
+void Mouse::setPosition(Node position){
+    
+    _position = Position(position.x() * sideWidth , position.y() * sideWidth);
+    
+}
+
+
+
+
+
+
+
+void Mouse::sePosition(Position position){
+    
+    _position = position;
+}
+
+
+
+
+
+
+
+double    Mouse::Heading(){
+    
+    return _heading;
+}
+
+
+
+
+
+
+
+Direction  Mouse::HeadingDir(){
+    
+    return static_cast<Direction>( _heading / 45);
+    
+}
+
+
+
+
+
+
+
+void Mouse::setHeading(Direction dir){
+    
+    _heading = dir * 45;
+    
+}
+
+
+
+
+
+
+
+void Mouse::setHeading(double dir){
+    
+    _heading = dir;
+    
+}
+
+
+
+
+
+
+
+bool Mouse::isWall(IRWall dir){
     
     return true;
-    
 }
 
 
@@ -90,15 +181,15 @@ void Mouse::Move(dirVector dir){
 
 bool Mouse::exploreMaze(){
     
-    Path temp = maze.findPath(position, center);
+    Path temp = maze.findPath(positionNode(), _center);
     
     
     while (!temp.empty()) {
         
         
-         followUntillBroken(temp);
+         _followUntillBroken(temp);
         
-        temp = maze.findPath(position, center);
+        temp = maze.findPath(positionNode(), _center);
         
         
         
@@ -137,45 +228,68 @@ bool Mouse::followPath(Path path){
 
 
 
-bool Mouse::followUntillBroken(Path path){
+bool Mouse::gotoNode(Node destination){
+    
+    
+   return  _followUntillBroken(maze.findPath(positionNode(), destination));
+    
+}
+
+
+
+
+
+
+
+
+bool Mouse::_followUntillBroken(Path path){
     
     while (!path.empty()) {
         
     
     
-   Node nextPosition = path.peekNode();
+//   Node nextPosition = path.peekNode();
+//    
+//    if (isWall(E)) {
+//        
+//        maze.removeNeighbour(positionNode(), E);
+//    }
+//    
+//    
+//    
+//    if (isWall(W)) {
+//        
+//        maze.removeNeighbour(positionNode(), W);
+//        
+//    }
+//    
+//    
+//    
+//    if(isWall(positionNode().whichSide(nextPosition))){
+//        
+//        maze.removeNeighbour(positionNode(), nextPosition);
+//        
+//        return false;
+//    }
+//    
+//    
+//    Move(path.next());
+//    
+//    }
     
-    if (isWall(E)) {
-        
-        maze.removeNeighbour(position, E);
     }
-    
-    
-    
-    if (isWall(W)) {
-        
-        maze.removeNeighbour(position, W);
-        
-    }
-    
-    
-    
-    if(isWall(position.whichSide(nextPosition))){
-        
-        maze.removeNeighbour(position, nextPosition);
-        
-        return false;
-    }
-    
-    
-    Move(path.next());
-    
-    }
-    
-    
     return true;
     
 }
+
+
+
+
+
+
+
+
+
 
 
 

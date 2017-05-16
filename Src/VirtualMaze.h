@@ -52,11 +52,11 @@ public:
     
     Node toScreen(const Node& location);
     
-    std::vector<Direction> missingNeigbour(const Node& location);
+    std::vector<Direction> missingNeigbour(const Node& location, Maze maze);
     
     void drawWall(const Node& location, Direction side, sf::Color color = sf::Color::Red);
     
-    void drawMaze();
+    void drawMaze(sf::Color color = sf::Color::Red);
     
     void run();
     
@@ -78,11 +78,21 @@ public:
     
     void drawNode(Node node);
     
+    void drawVirtual();
+    
+    void clear();
+    
+    void display();
+    
+    void dump();
+    
+    void drawAll();
+    
     
     
 private:
     
-    void drawAll();
+    
     
     void drawBackground();
     
@@ -96,9 +106,7 @@ private:
     
     bool dynamic;
     
-    bool virtualbot;
-    
-    bool onlybot;
+    bool escapeRun = true;
     
     Maze botMaze;
     

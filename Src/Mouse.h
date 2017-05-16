@@ -17,7 +17,14 @@
 #include "Vector.h"
 #include "Path.h"
 #include "Maze.h"
+#include "VirtualMaze.h"
 
+enum IRWall{
+    F, DF, LF , RF
+};
+
+
+#define sideWidth 18
 
 class Mouse{
     
@@ -25,11 +32,27 @@ class Mouse{
     
     Mouse();
     
-    Mouse(Node currentPosition=Node(1,1), Direction currentDirection = N,Node center=Node(8,8));
+    Mouse(Position currentPosition=Position(0,0), Direction currentDirection = N,Node center=Node(8,8));
     
     ~Mouse();
     
-    bool isWall(Direction dir);
+    Position position();
+    
+    Node      positionNode();
+    
+    void setPosition(Node position);
+    
+    void sePosition(Position position);
+    
+    double    Heading();
+    
+    Direction  HeadingDir();
+    
+    void setHeading(Direction dir);
+    
+    void setHeading(double dir);
+    
+    bool isWall(IRWall dir);
     
     void faceDir(Direction dir);
     
@@ -39,7 +62,7 @@ class Mouse{
     
     bool followPath(Path path);
     
-    
+    bool gotoNode(Node destination);
     
    
     
@@ -47,17 +70,19 @@ class Mouse{
     
 private:
     
-    bool followUntillBroken(Path path);
+    bool _followUntillBroken(Path path);
     
-    Node position;
+    Position _position;
     
-    Node center;
+    Node _center;
     
-    Direction heading;
-    
+    double _heading;
     
     Maze maze;
     
+    bool mazeFullyExplored;
+    
+    VirtualMaze virmaze;
     
 };
 
