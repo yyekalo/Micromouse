@@ -33,50 +33,21 @@ using namespace std;
 #include "Vector.h"
 #include "Maze.h"
 #include "VirtualMaze.h"
-
-void print(Maze maze, Node node){
-    
-    for(auto temp :maze.getStoredNeighbour(node))
-        
-        std::cout << temp.returnString()  << std::endl;
-}
-
-
-
-//unordered_map<Node, float, NodeHasher> temp1;
-//
-//temp1[Node(1,1)] = 19108.3;
-//
-//
-//std::cout <<temp1[Node(1,1)] << endl;
-//
-//temp1.clear();
-//
-//std::cout <<temp1.count(Node(1,1)) << endl;
-//temp1[Node(1,1)] = 9930;
-//std::cout <<temp1.count(Node(1,1)) << endl;
-//
-
-
-
+#include "Mouse.h"
 
 
 int main(){
     
     
-    VirtualMaze temp;
     
-    temp.generateMaze();
+    Mouse myMouse(Position(0,0),N,Node(8,8));
     
-    temp.run();
-   
+    //VirtualMaze temp;
     
-    temp.drawAll();
+   // temp.run();
     
-    temp.dump();
     
-    cout << temp.isWall(Node(1,1), E)<< endl;
-    
+            
     while (true) {
         
     }

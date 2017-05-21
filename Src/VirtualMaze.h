@@ -88,19 +88,23 @@ public:
     
     void drawAll();
     
+     void drawBackground();
+    
     
     
 private:
     
     
     
-    void drawBackground();
+   
     
     sf::RenderWindow window;
     
     sf::Event event;
     
     Path _path;
+    
+    Path _temp;
     
     Maze maze;
     

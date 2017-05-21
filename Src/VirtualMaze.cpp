@@ -869,6 +869,8 @@ void VirtualMaze::VirtualBot(){
     
     Node currentNode = start;
     
+    _temp = maze.findPath(start, end);
+    
     while (currentNode != center ) {
         
     
@@ -892,11 +894,41 @@ void VirtualMaze::VirtualBot(){
         alreadyTravledPath = maze.findPath(original, currentNode,false);
 
         
-        usleep(700000);
+        usleep(500000);
+        
+    }
+    
+    while (currentNode != start ) {
+        
+        
+        
+        
+        
+        _path =  botMaze.findPath(currentNode, start,false);
+        
+        
+        
+        if (_path.start() == Node(0,0)) {
+            
+            std::cout <<"No path to find"<< std::endl;
+            return ;
+        }
+        
+        
+        
+        currentNode =   followUntilbroken(botMaze, _path);
+        
+        alreadyTravledPath = maze.findPath(center, currentNode,false);
+        
+        
+        usleep(500000);
         
     }
     
 
+    _path = botMaze.findPath(start, end);
+    
+    drawVirtual();
     
     std::cout <<"Done found the path"<< std::endl;
     
@@ -977,6 +1009,8 @@ void VirtualMaze::drawVirtual(){
     window.clear();
     
     drawBackground();
+    
+    drawPath(_temp,sf::Color::Cyan);
     
     drawMaze(sf::Color::Color(0,255,255,50));
     
