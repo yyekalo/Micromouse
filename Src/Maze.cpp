@@ -631,7 +631,7 @@ void Maze::print(const Node& temp){
     
     }
     
-    
+     std::cout << "DD" << std::endl;
 }
 
 
