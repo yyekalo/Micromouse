@@ -15,6 +15,7 @@
 #include <map>
 #include <vector>
 #include <queue>
+#include <unistd.h> //for sleep time
 
 
 
@@ -36,21 +37,17 @@ using namespace std;
 #include "Mouse.h"
 
 
+
+
+
 int main(){
     
+
+    VirtualMaze virMaze;
     
+    virMaze.run();
     
-    Mouse myMouse(Position(0,0),N,Node(8,8));
-    
-    //VirtualMaze temp;
-    
-   // temp.run();
-    
-    
-            
-    while (true) {
-        
-    }
+   
     
     
     

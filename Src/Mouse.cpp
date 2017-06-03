@@ -13,6 +13,7 @@
 
 Mouse::Mouse(){
     
+    maze.resetMaze();
     
     virmaze.generateMaze();
     
@@ -23,6 +24,8 @@ Mouse::Mouse(){
     virmaze.display();
     
     virmaze.dump();
+    
+    exploreMaze();
     
     
 }
@@ -43,6 +46,8 @@ Mouse::Mouse(Position currentPosition, Direction currentDirection, Node intCente
     _heading = currentDirection;
     
     maze = Maze();
+
+    maze.resetMaze();
     
     virmaze.generateMaze();
     
@@ -84,7 +89,8 @@ Position Mouse::position(){
 
 Node      Mouse::positionNode(){
     
-    return Node(_position.x() / sideWidth , _position.y() / sideWidth);
+    
+    return Node(floor(_position.x() / sideWidth)+1 , floor(_position.y() / sideWidth)+1);
     
 }
 
@@ -234,8 +240,9 @@ void faceDir(Direction dir){
 
 void Mouse::Move(dirVector dir){
     
-    std::cout << "Moving this wasy " << dir.Dir() << dir.Mag() << std::endl;
+    std::cout << "Moving this wasy " << dir.Dir() << " distnace of " << dir.Mag() << std::endl;
 
+    setPosition(dir.getNode(positionNode()));
     
 }
 
@@ -255,17 +262,19 @@ bool Mouse::exploreMaze(){
     
     do{
         
-        std::cout << "got here " << std::endl;
         
         temp = maze.findPath(positionNode(), _center);
-
+        
+        temp.print();
+        
          _followUntillBroken(temp);
         
-               temp.print();
-
+        
     } while (!temp.empty());
     
-    
+     std::cout << "exited exploreMaze option " << std::endl;
+
+    draw();
     
     return true;
     
@@ -385,7 +394,7 @@ void Mouse::draw(){
     
     virmaze.drawMaze(maze,sf::Color::Red);
     
-   // virmaze.drawPath(bestPath,sf::Color::Green);
+    virmaze.drawPath(bestPath,sf::Color::Green);
     
     virmaze.drawPath(maze.findPath(positionNode(), _center),sf::Color::White);
     
