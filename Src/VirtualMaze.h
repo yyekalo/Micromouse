@@ -54,31 +54,18 @@ public:
     
     std::vector<Direction> missingNeigbour(const Node& location, Maze maze);
     
-    void drawWall(const Node& location, Direction side, sf::Color color = sf::Color::Red);
-    
-    void drawMaze(sf::Color color = sf::Color::Red);
-    
-    void run();
-    
-    void drawLine(const Node& from, const Node& to, sf::Color color);
-    
     Node getCenter(const Node& node);
-    
-    void drawPath(Path path,sf::Color color = sf::Color::Green);
     
     void deletePath(Path path);
     
     bool isWall(const Node& direction, Direction dir );
     
-    void drawMaze(Maze maze, sf::Color color=sf::Color::Red);
-    
+    //To be removed implmented in the Mouse class
     Node followUntilbroken(Maze& maze, Path path);
     
     void VirtualBot();
     
     void drawNode(Node node);
-    
-    void drawVirtual();
     
     void clear();
     
@@ -86,21 +73,47 @@ public:
     
     void dump();
     
+    void run();
+    
+    //Drawing functions
+    
+    void drawPath(Path path,sf::Color color = sf::Color::Green);
+    
+    void drawMaze(sf::Color color = sf::Color::Red);
+    
+    void drawMaze(Maze maze, sf::Color color=sf::Color::Red);
+    
+    void drawVirtual();
+    
     void drawAll();
+    
+    void drawBackground();
+    
+    
+   
+
+    
+   
+    
+    
+
     
     
     
 private:
     
     
+    void drawLine(const Node& from, const Node& to, sf::Color color);
     
-    void drawBackground();
+    void drawWall(const Node& location, Direction side, sf::Color color = sf::Color::Red);
     
     sf::RenderWindow window;
     
     sf::Event event;
     
     Path _path;
+    
+    Path _temp;
     
     Maze maze;
     

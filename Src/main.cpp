@@ -15,6 +15,7 @@
 #include <map>
 #include <vector>
 #include <queue>
+#include <unistd.h> //for sleep time
 
 
 
@@ -33,29 +34,7 @@ using namespace std;
 #include "Vector.h"
 #include "Maze.h"
 #include "VirtualMaze.h"
-
-void print(Maze maze, Node node){
-    
-    for(auto temp :maze.getStoredNeighbour(node))
-        
-        std::cout << temp.returnString()  << std::endl;
-}
-
-
-
-//unordered_map<Node, float, NodeHasher> temp1;
-//
-//temp1[Node(1,1)] = 19108.3;
-//
-//
-//std::cout <<temp1[Node(1,1)] << endl;
-//
-//temp1.clear();
-//
-//std::cout <<temp1.count(Node(1,1)) << endl;
-//temp1[Node(1,1)] = 9930;
-//std::cout <<temp1.count(Node(1,1)) << endl;
-//
+#include "Mouse.h"
 
 
 
@@ -63,23 +42,12 @@ void print(Maze maze, Node node){
 
 int main(){
     
+
+    VirtualMaze virMaze;
     
-    VirtualMaze temp;
+    virMaze.run();
     
-    temp.generateMaze();
-    
-    temp.run();
    
-    
-    temp.drawAll();
-    
-    temp.dump();
-    
-    cout << temp.isWall(Node(1,1), E)<< endl;
-    
-    while (true) {
-        
-    }
     
     
     

@@ -30,11 +30,17 @@ class Mouse{
     
     
     
+    
+public:
+    
     Mouse();
     
     Mouse(Position currentPosition=Position(0,0), Direction currentDirection = N,Node center=Node(8,8));
     
     ~Mouse();
+    
+    
+    //seter and getter for private members
     
     Position position();
     
@@ -52,7 +58,12 @@ class Mouse{
     
     void setHeading(double dir);
     
+    
+    
+    
     bool isWall(IRWall dir);
+    
+    bool isWall(Direction dir);
     
     void faceDir(Direction dir);
     
@@ -63,6 +74,8 @@ class Mouse{
     bool followPath(Path path);
     
     bool gotoNode(Node destination);
+    
+    void draw();
     
    
     
@@ -83,6 +96,8 @@ private:
     bool mazeFullyExplored;
     
     VirtualMaze virmaze;
+    
+    Path bestPath;
     
 };
 
