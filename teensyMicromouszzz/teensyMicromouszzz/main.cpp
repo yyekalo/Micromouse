@@ -6,7 +6,10 @@
 //  Copyright © 2017 Yikealo Abraha . All rights reserved.
 //
 
+
+//std include
 #include <iostream>
+#include <fstream>
 
 
 //grpahics
@@ -25,14 +28,19 @@
 #include "Time.h"
 
 
-
+//using namespace std;
 
 int main() {
     
-    
     VirtualMaze mm;
-    
     mm.run();
+    
+    
+    while (1) {
+        
+    }
+    
+   
     
        return 0;
 }

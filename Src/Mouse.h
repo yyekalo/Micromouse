@@ -19,9 +19,7 @@
 #include "Maze.h"
 #include "VirtualMaze.h"
 
-enum IRWall{
-    F, DF, LF , RF
-};
+
 
 
 #define sideWidth 18
@@ -60,9 +58,7 @@ public:
     
     
     
-    
-    bool isWall(IRWall dir);
-    
+
     bool isWall(Direction dir);
     
     void faceDir(Direction dir);

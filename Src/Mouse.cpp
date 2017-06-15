@@ -15,18 +15,6 @@ Mouse::Mouse(){
     
     maze.resetMaze();
     
-    virmaze.generateMaze();
-    
-    virmaze.drawAll();
-    
-    virmaze.run();
-    
-    virmaze.display();
-    
-    virmaze.dump();
-    
-    exploreMaze();
-    
     
 }
 
@@ -170,46 +158,6 @@ void Mouse::setHeading(double dir){
 
 
 
-bool Mouse::isWall(IRWall dir){
-    
-    switch (dir) {
-            
-            
-        case F:
-            
-            return  virmaze.isWall(positionNode(), N);
-            
-            break;
-            
-        case DF:
-            
-            return virmaze.isWall(maze.getNeigbour(positionNode(), N), N);
-            
-            break;
-            
-        case LF:
-            
-           return virmaze.isWall(maze.getNeigbour(positionNode(), N), W);
-            
-            break;
-            
-        case RF:
-            
-            return virmaze.isWall(maze.getNeigbour(positionNode(), N), E);
-            
-            break;
-            
-    }
-    
-    
-}
-
-
-
-
-
-
-
 
 bool Mouse::isWall(Direction dir){
     
@@ -327,57 +275,15 @@ bool Mouse::_followUntillBroken(Path path){
         
     
     
-   Node nextPosition = path.peekNode();
+       
     
-    if (isWall(F)) {
-        
-        maze.removeNeighbour(positionNode(), N);
-    }
-    
-    
-    
-    if (isWall(DF)) {
-        
-        maze.removeNeighbour(maze.getNeigbour(positionNode(), N), N);
-        
-    }
-    
-        
-    if (isWall(LF)) {
-            
-        maze.removeNeighbour(maze.getNeigbour(positionNode(), W), N);
-            
-    }
-    
-    if (isWall(RF)) {
-            
-            maze.removeNeighbour(maze.getNeigbour(positionNode(), E), N);
-            
-    }
-    
-    
-    if(isWall(positionNode().whichSide(nextPosition))){
-        
-        maze.removeNeighbour(positionNode(), nextPosition);
-        
-        return false;
-    }
-    
-    setPosition(path.peekNode());
-    
-    Move(path.next());
-        
-        draw();
-        
-    
-    }
-    
-    
-    return true;
     
 }
+    
+    return true;
 
 
+}
 
 
 

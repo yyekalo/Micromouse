@@ -12,6 +12,9 @@
 #include <stdio.h>
 #include <utility>
 #include <iostream>
+#include <fstream>
+
+using namespace std;
 
 //my classes 
 #include "Maze.h"
@@ -60,10 +63,19 @@ public:
     
     bool isWall(const Node& direction, Direction dir );
     
+    //Drawing functions
+    
+
+    void saveMaze();
+    
+    void loadMaze();
+    
     //To be removed implmented in the Mouse class
     Node followUntilbroken(Maze& maze, Path path);
     
     void VirtualBot();
+    
+    //Drawing functions
     
     void drawNode(Node node);
     
@@ -74,8 +86,6 @@ public:
     void dump();
     
     void run();
-    
-    //Drawing functions
     
     void drawPath(Path path,sf::Color color = sf::Color::Green);
     
