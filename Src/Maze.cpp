@@ -7,7 +7,9 @@
 //
 
 #include "Maze.h"
-/* node to self i am stuck here will figure it out next time i get back to it*/
+
+
+
 Maze::Maze(){
     
     resetMaze();
@@ -36,7 +38,21 @@ std::unordered_map<Node,std::vector<Node>,NodeHasher>  Maze::getMaze() const{
     return maze;
 }
 
+
+
+
+
+
+
+
+
+
+
 //Manhatten style distance between two nodes
+/*
+ This is later to be changed to give the true(physical) cost of movments
+ later after the physical build of the micromouse
+ */
 float Maze::movementCost(const Node& from, const Node& to) const{
     
     return  sqrt(pow(abs(from.x()-to.x()),2) + pow(abs(from.y()-to.y()),2));
@@ -82,6 +98,8 @@ bool Maze::mazeExplored(){
 //return Path from (from) to the destination to.
 Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
     
+    
+    
     PriorityQueue toBeExplored;
     
     toBeExplored.put(from, 0);
@@ -90,10 +108,12 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
     
     std::unordered_map<Node, Node,NodeHasher>  parent;
     
+    std::unordered_map<Node, bool,NodeHasher> examned;
+    
     
     parent[from] = from;
     
-    explored[from] = true;
+    examned[from] = true;
     
     
     while (!toBeExplored.empty()) {
@@ -102,7 +122,7 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
         Node currentNode = toBeExplored.get();
         
         //std::cout << "currentNode "  << currentNode.returnString() << std::endl;
-        explored[currentNode] = true;
+        examned[currentNode] = true;
         
        
         
@@ -147,7 +167,7 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
     
     
    
-    if (explored[to]==false) {
+    if (examned[to]==false) {
         
         return Path(Node(0,0));
         
@@ -160,7 +180,7 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
         path.add(parent[path.start()]);
     }
     
-    explored.clear();
+    examned.clear();
     
     return path;  
     

@@ -479,7 +479,11 @@ void VirtualMaze::run(){
                     
                     _path = maze.findPath(Node(1,1), Node(8,8));                    
                                         }
+                    
+                    
                     drawAll();
+                    
+                    window.display();
 
                     break;
                     
@@ -491,9 +495,11 @@ void VirtualMaze::run(){
                     if (event.key.code == sf::Keyboard::A) {
                         
                         drawAll();
+                        display();
                         
                     }
                     
+                    //Draw path from center to end;
                     if (event.key.code == sf::Keyboard::B){
                      
                         _path = maze.findPath(start, end);
@@ -512,6 +518,7 @@ void VirtualMaze::run(){
                         alreadyTravledPath = Path(Node(0,0));
                         
                         drawAll();
+                        display();
                         
                         
                         
@@ -527,9 +534,27 @@ void VirtualMaze::run(){
                         
                     }
                     
+                    if (event.key.code == sf::Keyboard::E){
+                        
+                        
+                        end =  getNode(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+                        
+                        
+                    }
+
                     
                     
-                    
+                    if (event.key.code == sf::Keyboard::G){
+                        
+                        
+                        generateMaze();
+                        
+                        drawAll();
+                        
+                        window.display();
+                        
+                    }
+
                     
                     
                     
@@ -542,39 +567,6 @@ void VirtualMaze::run(){
                     }
                     
                     
-                    if (event.key.code == sf::Keyboard::V){
-                        
-                        
-                        VirtualBot();
-                        
-                    }
-
-                    
-                    
-                    
-                    
-                    if (event.key.code == sf::Keyboard::G){
-                        
-                        
-                        generateMaze();
-                        
-                        drawAll();
-                        
-                    }
-                    
-                    
-                    
-                    
-                    if (event.key.code == sf::Keyboard::E){
-                        
-                        
-                        end =  getNode(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
-                       
-                       
-                    }
-                    
-                    
-                    
                     
                     if (event.key.code == sf::Keyboard::S){
                         
@@ -583,6 +575,32 @@ void VirtualMaze::run(){
                        
                         
                     }
+                    
+                    
+                    
+                    
+                    if (event.key.code == sf::Keyboard::V){
+                        
+                        
+                        VirtualBot();
+                        
+                    }
+                    
+                    if (event.key.code == sf::Keyboard::Z){
+                        
+                        
+                        saveMaze();
+                    }
+                    
+                    if (event.key.code == sf::Keyboard::X){
+                        
+                        
+                        loadMaze();
+                        drawAll();
+                        display();
+                        
+                    }
+
                     
                     
                     
@@ -705,6 +723,185 @@ bool VirtualMaze::isWall(const Node& node, Direction dir ){
 
 
 
+void VirtualMaze::saveMaze(){
+    
+    string rootDir = "/Users/yikealo/Documents/Micromouse/resource/";
+    
+    string nameOfMaze;
+    
+    cout << "\nEnter the name to save the maze as(q for exit) ";
+    
+    cin >> nameOfMaze;
+    
+    if (nameOfMaze == "q" or nameOfMaze == "Q") {
+        
+        return;
+    
+    }
+
+    
+    std::ofstream myfile(rootDir + nameOfMaze);
+    
+    
+    if (!myfile.is_open()) {
+        
+        cout << "canot open file" <<  endl;
+        
+        return;
+    }
+    
+    for (int y=1; y < 17 ; y++) {
+        
+        for (int x=1; x < 17; x++) {
+            
+           
+            
+            for(Direction temp : missingNeigbour(Node(x,y), maze)){
+                
+            
+                switch (temp) {
+                    case N:
+                        myfile << "N";
+                        break;
+                        
+                    case E:
+                        myfile << "E";
+                        break;
+                        
+                    case S:
+                        myfile << "S";
+                        break;
+                        
+                    case W:
+                        myfile << "W";
+                        break;
+                        
+                        
+                    default:
+                        break;
+                }
+                
+                
+                
+            }
+            
+            
+            myfile << ";";
+        }
+        
+        myfile << ":";
+    }
+    
+    
+    myfile.close();
+    
+}
+
+
+
+
+
+
+
+void VirtualMaze::loadMaze(){
+    
+    string rootDir = "/Users/yikealo/Documents/Micromouse/resource/";
+    
+    string nameOfMaze;
+    
+    cout << "\nEnter the name of the maze to load(q for exit) ";
+    
+    cin >> nameOfMaze;
+    
+    if (nameOfMaze == "q" or nameOfMaze == "Q") {
+        
+        return;
+    }
+    
+    maze.resetMaze();
+    
+    char ch;
+    
+    int x = 1 , y = 1;
+    
+    std::ifstream myfile(rootDir + nameOfMaze);
+    
+    
+    if (!myfile.is_open()) {
+        
+        cout << "file not found" <<  endl;
+        return;
+    }
+    
+    while (myfile >> noskipws >> ch) {
+        
+    
+       
+        
+        if(ch == ';'){
+            
+            x++;
+            
+            
+            
+        } else if(ch == ':'){
+            
+            y++;
+            
+            x=1;
+            
+
+            
+        }else{
+            
+            
+            switch (ch) {
+                    
+                case 'N':
+                   maze.removeNeighbour(Node(x,y), N);
+                    break;
+                    
+                case 'E':
+                    maze.removeNeighbour(Node(x,y), E);
+                    break;
+                    
+                case 'S':
+                    maze.removeNeighbour(Node(x,y), S);
+                    break;
+                    
+                case 'W':
+                    maze.removeNeighbour(Node(x,y), W);
+                    break;
+                    
+                    
+                default:
+                    break;
+            }
+
+            
+        }
+        
+    }
+
+    
+    myfile.close();
+    
+
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
 void VirtualMaze::drawMaze(Maze inmaze, sf::Color color){
     
     drawBackground();
@@ -726,10 +923,7 @@ void VirtualMaze::drawMaze(Maze inmaze, sf::Color color){
         
     }
 
-    display();
-    
-    dump();
-    
+       
 }
 
 

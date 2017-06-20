@@ -19,9 +19,7 @@
 #include "Maze.h"
 #include "VirtualMaze.h"
 
-enum IRWall{
-    F, DF, LF , RF
-};
+
 
 
 #define sideWidth 18
@@ -32,8 +30,6 @@ class Mouse{
     
     
 public:
-    
-    Mouse();
     
     Mouse(Position currentPosition=Position(0,0), Direction currentDirection = N,Node center=Node(8,8));
     
@@ -59,23 +55,32 @@ public:
     void setHeading(double dir);
     
     
+    //Hight level functions
+    
+    bool exploreMaze();
     
     
-    bool isWall(IRWall dir);
+    void draw();
     
-    bool isWall(Direction dir);
+    
+    
+    //Movment functions
+
     
     void faceDir(Direction dir);
     
     void Move(dirVector dir);
     
-    bool exploreMaze();
-    
     bool followPath(Path path);
     
     bool gotoNode(Node destination);
     
-    void draw();
+    //information retriving functions
+    
+    bool isWall(Direction dir);
+    
+    bool pathVisited(Path path);
+
     
    
     
@@ -85,19 +90,32 @@ private:
     
     bool _followUntillBroken(Path path);
     
-    Position _position;
     
-    Node _center;
+    //current Mouse Bot state
+    
+    Position _position;
     
     double _heading;
     
+    
+   
+    
+    //Maze info
     Maze maze;
+    
+    Node _center = Node(8,8);
     
     bool mazeFullyExplored;
     
-    VirtualMaze virmaze;
-    
     Path bestPath;
+
+    
+    
+    /*only if in simulation. I might have to remove it later 
+     or use Macro to not declare it.
+     */
+    VirtualMaze virmaze;
+
     
 };
 

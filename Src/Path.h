@@ -23,6 +23,8 @@ public:
     
     dirVector(double mag, Direction dir);
     
+    dirVector(Node from, Node to);
+    
     ~dirVector();
     
     float Mag() const;
