@@ -39,9 +39,12 @@ class VirtualMaze{
     
 public:
     
+    //consturtor distractors
     VirtualMaze();
     
     ~VirtualMaze();
+    
+    //assistive functions
     
     Node getNode(int x, int y);
     
@@ -60,6 +63,8 @@ public:
     Node getCenter(const Node& node);
     
     void deletePath(Path path);
+    
+    //Function for Mouse class
     
     bool isWall(const Node& direction, Direction dir );
     

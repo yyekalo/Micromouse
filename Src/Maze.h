@@ -104,7 +104,7 @@ public:
     
     void print(const Node& temp);
     
-    
+    std::unordered_map<Node, bool,NodeHasher>  explored;
     
     
     
@@ -114,10 +114,6 @@ private:
     
     std::unordered_map<Node,std::vector<Node>,NodeHasher> maze;
     
-    
-    std::unordered_map<Node, bool,NodeHasher>  explored;
-
-
 
 };
 

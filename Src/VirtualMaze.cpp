@@ -495,9 +495,11 @@ void VirtualMaze::run(){
                     if (event.key.code == sf::Keyboard::A) {
                         
                         drawAll();
+                        display();
                         
                     }
                     
+                    //Draw path from center to end;
                     if (event.key.code == sf::Keyboard::B){
                      
                         _path = maze.findPath(start, end);

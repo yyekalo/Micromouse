@@ -46,6 +46,21 @@ dirVector::dirVector(double mag, Direction  dir){
 
 
 
+dirVector::dirVector(Node from, Node to){
+    
+    this->dir = from.whichSide(to);
+    
+    this->mag = sqrt(pow(from.x()-to.x(),2)+ pow(from.y()-to.y(),2));
+    
+}
+
+
+
+
+
+
+
+
 
 dirVector::~dirVector(){
     

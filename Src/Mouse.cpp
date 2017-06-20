@@ -10,21 +10,6 @@
 
 
 
-
-Mouse::Mouse(){
-    
-    maze.resetMaze();
-    
-    
-}
-
-
-
-
-
-
-
-
 Mouse::Mouse(Position currentPosition, Direction currentDirection, Node intCenter){
     
     _position = currentPosition;
@@ -36,8 +21,6 @@ Mouse::Mouse(Position currentPosition, Direction currentDirection, Node intCente
     maze = Maze();
 
     maze.resetMaze();
-    
-    virmaze.generateMaze();
     
     virmaze.run();
     
@@ -161,7 +144,9 @@ void Mouse::setHeading(double dir){
 
 bool Mouse::isWall(Direction dir){
     
-    return !maze.areNeighbours(positionNode(), maze.getNeigbour(positionNode(), dir));
+    cout << "Is wall infront " << positionNode().returnString() << " facing " << dir <<" "<< virmaze.isWall(positionNode(), dir)<<endl;
+    return virmaze.isWall(positionNode(), dir);
+   
     
 }
 
@@ -188,9 +173,22 @@ void faceDir(Direction dir){
 
 void Mouse::Move(dirVector dir){
     
-    std::cout << "Moving this wasy " << dir.Dir() << " distnace of " << dir.Mag() << std::endl;
+    
+    
+   
+
 
     setPosition(dir.getNode(positionNode()));
+    
+    std::cout << " at" << positionNode().returnString()<< std::endl;
+    
+    
+    virmaze.clear();
+    virmaze.drawBackground();
+    virmaze.drawMaze(maze);
+    virmaze.display();
+    virmaze.dump();
+    
     
 }
 
@@ -203,40 +201,23 @@ void Mouse::Move(dirVector dir){
 
 bool Mouse::exploreMaze(){
     
+    cout << " Center is though as " << _center.returnString() << endl;
+
     
-    
-    Path temp;
-    
-    
-    do{
+    while (positionNode()!=_center) {
+        
+        maze.findPath(positionNode(), _center).print();
+        
+      _followUntillBroken(maze.findPath(positionNode(), _center));
         
         
-        temp = maze.findPath(positionNode(), _center);
-        
-        temp.print();
-        
-         _followUntillBroken(temp);
-        
-        
-    } while (!temp.empty());
     
-     std::cout << "exited exploreMaze option " << std::endl;
+        
+    }
 
-    draw();
-    
-    return true;
+   
     
     
-}
-
-
-
-
-
-
-
-
-bool Mouse::followPath(Path path){
     
     
     
@@ -249,18 +230,6 @@ bool Mouse::followPath(Path path){
 
 
 
-
-
-
-
-
-
-bool Mouse::gotoNode(Node destination){
-    
-    
-   return  _followUntillBroken(maze.findPath(positionNode(), destination));
-    
-}
 
 
 
@@ -271,19 +240,99 @@ bool Mouse::gotoNode(Node destination){
 
 bool Mouse::_followUntillBroken(Path path){
     
+    
+    
     while (!path.empty()) {
         
+        
+        
+        if (isWall(positionNode().whichSide(path.peekNode()))) {
+            
+            
+            
+            
+            
+            maze.removeNeighbour(positionNode(), path.peekNode());
+            
+            return false;
+            
+        }
+        
+        cout << " my next position " << path.peekNode().returnString() << endl;
+        
+        gotoNode(path.nextNode());
     
     
-       
+    }
     
     
-}
+    
+    
+    
+    
     
     return true;
-
-
+    
+    
 }
+
+
+
+
+
+
+
+
+
+
+/*
+ TODO: This function is going to be modified later on to produce smoth traversing with speed control
+ */
+bool Mouse::followPath(Path path){
+    
+    if (!pathVisited(path)) {
+        
+        
+    }
+    
+    while (!path.empty()) {
+        
+        
+        Move(path.next());
+        
+    }
+    
+    
+    
+    return true;
+    
+    
+}
+
+
+
+
+
+
+
+
+//TODO: review if this is a good implmentation
+bool Mouse::gotoNode(Node destination){
+    
+    setPosition(destination);
+    
+    cout << "set position to be " << destination.returnString() << endl;
+    
+    return true; //followPath(maze.findPath(positionNode(), destination));
+    
+}
+
+
+
+
+
+
+
 
 
 
@@ -310,11 +359,43 @@ void Mouse::draw(){
 
 
     
+    //Temperaly storing;
+    virmaze.clear();
+    virmaze.drawBackground();
+    virmaze.drawMaze(maze);
+    virmaze.display();
+    virmaze.dump();
     
     
 }
 
 
+
+
+
+
+
+
+
+
+
+bool Mouse::pathVisited(Path path){
+    
+    while (path.empty()) {
+        
+        
+        
+        if (!maze.explored[path.nextNode()]) {
+            
+            return false;
+        }
+        
+    }
+    
+    
+    return true;
+    
+}
 
 
 

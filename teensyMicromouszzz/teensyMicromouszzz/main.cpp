@@ -32,15 +32,15 @@
 
 int main() {
     
-    VirtualMaze mm;
-    mm.run();
+       
+    Mouse mous;
     
-    
-    while (1) {
+    while (true) {
         
     }
     
-   
+    
+    
     
        return 0;
 }
