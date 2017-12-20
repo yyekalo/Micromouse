@@ -11,4 +11,14 @@
 
 #include <stdio.h>
 
+class Time {
+    
+    
+    
+    
+    
+    
+    
+};
+
 #endif /* Time_hpp */

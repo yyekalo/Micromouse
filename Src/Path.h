@@ -52,7 +52,9 @@ private:
 
 
 
-//ToDo overload < > operators to calcualte which path is the fastest
+/*/ToDo overload < > operators to calcualte which path is the fastest
+//To be implmented when i collect data on the movement cost when the micromouse is built
+ */
 class Path{
     
 public:
@@ -65,9 +67,13 @@ public:
     
     Node       nextNode();
     
-    bool operator==(Path node);
+    bool operator==(Path path);
     
-    bool operator!=(Path node);
+    bool operator!=(Path path);
+    
+    bool operator<(Path path);
+    
+    bool operator>(Path path);
     
     void add(dirVector toBeAdded);
     

@@ -26,6 +26,9 @@ enum IRWall{
 
 #define sideWidth 18
 
+
+//TODO: improve the setter and getter of posistion all four function.
+
 class Mouse{
     
     
@@ -33,7 +36,6 @@ class Mouse{
     
 public:
     
-    Mouse();
     
     Mouse(Position currentPosition=Position(0,0), Direction currentDirection = N,Node center=Node(8,8));
     
@@ -61,7 +63,7 @@ public:
     
     
     
-    bool isWall(IRWall dir);
+    //bool isWall(IRWall dir);  //to be implmented after IR-class is build
     
     bool isWall(Direction dir);
     

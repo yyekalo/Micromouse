@@ -154,7 +154,7 @@ Node      dirVector::getNode(const Node& form){
             
         case N:
             
-            return Node(form.x(),form.y() - distance);
+            return Node(form.x(),form.y() + distance);
 
             
             break;
@@ -162,45 +162,45 @@ Node      dirVector::getNode(const Node& form){
         case NE:
             
             
-            return Node(form.x() -diagonal,form.y() -diagonal);
+            return Node(form.x() +diagonal,form.y() + diagonal);
 
             
             break;
             
         case E:
             
-            return Node(form.x() -distance,form.y());
+            return Node(form.x() +distance,form.y());
             
             break;
             
         case SE:
             
             
-            return Node(form.x()-diagonal,form.y() + diagonal);
+            return Node(form.x()+diagonal,form.y() - diagonal);
             
             break;
             
         case S:
             
-            return Node(form.x(),form.y() + distance);
+            return Node(form.x(),form.y() - distance);
             
             break;
             
         case SW:
             
-            return Node(form.x() + diagonal,form.y() + diagonal );
+            return Node(form.x() - diagonal,form.y() - diagonal );
             
             break;
             
         case W:
             
-            return Node(form.x() + distance,form.y());
+            return Node(form.x() - distance,form.y());
             
             break;
             
         case NW:
             
-            return Node(form.x() + diagonal,form.y() -diagonal);
+            return Node(form.x() - diagonal,form.y() + diagonal);
             
             break;
     }
@@ -275,6 +275,21 @@ void Path::add(dirVector toBeAdded){
 }
 
 
+
+
+
+
+
+
+
+
+
+void Path::add(const Node& to){
+    
+    add(dirVector(to.distance(lastNode),to.whichSide(lastNode)));
+    
+    lastNode = to;
+}
 
 
 
@@ -381,18 +396,39 @@ bool Path::operator!=(Path node){
 
 
 
-
-
-
-void Path::add(const Node& to){
+bool Path::operator<(Path second){
     
     
-    add(dirVector(lastNode.distance(to), lastNode.whichSide(to)));
+    std::stack<dirVector> temp = path;
     
-    lastNode = to;
+    int totalpathLength = 0;
+    
+    while (!temp.empty()) {
+        
+        totalpathLength += temp.top().Mag();
+        
+    }
+    
+    while (path.empty()) {
+        
+        
+    }
+    
+    return true;
+
 }
 
 
+
+
+
+
+
+bool Path::operator>(Path path){
+    
+    return true;
+    
+}
 
 
 
@@ -467,15 +503,14 @@ Node Path::start(){
 
 
 
-
+//TODO:-> fix this function need some cleaning to do.
 void Path::print(){
     
     std::stack<dirVector>  tempPath = path;
     
     Node tempNode =  lastNode;
     
-    
-    std::cout << lastNode.returnString() << " -> " ;
+    std::cout << tempNode.returnString()<<" ";
     
     while (!tempPath.empty()) {
         
@@ -488,13 +523,16 @@ void Path::print(){
         
 
         
-        std::cout << tempNode.returnString() <<  " -> " ;
+        std::cout << tempNode.returnString()<<" ";
         
         
     }
     
     std::cout << std::endl;
 
+    
+
+    
     
 }
 

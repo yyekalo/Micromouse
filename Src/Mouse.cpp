@@ -11,31 +11,6 @@
 
 
 
-Mouse::Mouse(){
-    
-    maze.resetMaze();
-    
-    virmaze.generateMaze();
-    
-    virmaze.drawAll();
-    
-    virmaze.run();
-    
-    virmaze.display();
-    
-    virmaze.dump();
-    
-    exploreMaze();
-    
-    
-}
-
-
-
-
-
-
-
 
 Mouse::Mouse(Position currentPosition, Direction currentDirection, Node intCenter){
     
@@ -102,7 +77,8 @@ Node      Mouse::positionNode(){
 
 void Mouse::setPosition(Node position){
     
-    _position = Position(position.x() * sideWidth , position.y() * sideWidth);
+
+    _position = Position(((position.x() * sideWidth)-(sideWidth/2)) , ((position.y() * sideWidth)-(sideWidth/2)));
     
 }
 
@@ -170,50 +146,11 @@ void Mouse::setHeading(double dir){
 
 
 
-bool Mouse::isWall(IRWall dir){
-    
-    switch (dir) {
-            
-            
-        case F:
-            
-            return  virmaze.isWall(positionNode(), N);
-            
-            break;
-            
-        case DF:
-            
-            return virmaze.isWall(maze.getNeigbour(positionNode(), N), N);
-            
-            break;
-            
-        case LF:
-            
-           return virmaze.isWall(maze.getNeigbour(positionNode(), N), W);
-            
-            break;
-            
-        case RF:
-            
-            return virmaze.isWall(maze.getNeigbour(positionNode(), N), E);
-            
-            break;
-            
-    }
-    
-    
-}
-
-
-
-
-
-
 
 
 bool Mouse::isWall(Direction dir){
     
-    return !maze.areNeighbours(positionNode(), maze.getNeigbour(positionNode(), dir));
+    return virmaze.isWall(positionNode(), dir);
     
 }
 
@@ -240,8 +177,16 @@ void faceDir(Direction dir){
 
 void Mouse::Move(dirVector dir){
     
-    std::cout << "Moving this wasy " << dir.Dir() << " distnace of " << dir.Mag() << std::endl;
-
+//only in pc
+    virmaze.drawMaze(sf::Color());
+    
+    virmaze.animate(positionNode(), dir.getNode(positionNode()));
+    
+    virmaze.drawMaze(maze);
+    
+    //upto here
+    
+    
     setPosition(dir.getNode(positionNode()));
     
 }
@@ -263,18 +208,43 @@ bool Mouse::exploreMaze(){
     do{
         
         
-        temp = maze.findPath(positionNode(), _center);
+        temp = maze.findPath(positionNode(), _center,false);
         
         temp.print();
         
          _followUntillBroken(temp);
         
         
-    } while (!temp.empty());
+    } while (positionNode()!=_center);
     
-     std::cout << "exited exploreMaze option " << std::endl;
 
-    draw();
+    do{
+        
+        
+        temp = maze.findPath(positionNode(), Node(1,1),false);
+        
+        temp.print();
+        
+        _followUntillBroken(temp);
+        
+        
+    } while (positionNode()!=Node(1,1));
+    
+   
+    temp = maze.findPath(Node(1,1), _center);
+    
+    virmaze.drawPath(temp,sf::Color::Blue);
+    
+    temp = maze.findPath(_center, Node(1,1));
+    
+    virmaze.drawPath(temp,sf::Color::Green);
+    
+    virmaze.display();
+    
+    while (true) {
+        
+    }
+    
     
     return true;
     
@@ -291,9 +261,6 @@ bool Mouse::exploreMaze(){
 bool Mouse::followPath(Path path){
     
     
-    
-    
-    
     return true;
     
     
@@ -306,7 +273,7 @@ bool Mouse::followPath(Path path){
 
 
 
-
+//Test this function more
 bool Mouse::gotoNode(Node destination){
     
     
@@ -323,58 +290,66 @@ bool Mouse::gotoNode(Node destination){
 
 bool Mouse::_followUntillBroken(Path path){
     
+    
+    
     while (!path.empty()) {
         
-    
-    
-   Node nextPosition = path.peekNode();
-    
-    if (isWall(F)) {
+        std::cout << "current posistion " <<positionNode().returnString() << std::endl;
         
-        maze.removeNeighbour(positionNode(), N);
-    }
-    
-    
-    
-    if (isWall(DF)) {
+
+        //TODO:- implment realistic exploration
+        //The micromouse can only check left right find and two diagonals
         
-        maze.removeNeighbour(maze.getNeigbour(positionNode(), N), N);
         
-    }
-    
-        
-    if (isWall(LF)) {
+        if (isWall(N)) {
             
-        maze.removeNeighbour(maze.getNeigbour(positionNode(), W), N);
+            maze.removeNeighbour(positionNode(), N);
             
-    }
-    
-    if (isWall(RF)) {
+        }
+        
+        
+        if (isWall(E)) {
             
-            maze.removeNeighbour(maze.getNeigbour(positionNode(), E), N);
+            maze.removeNeighbour(positionNode(), E);
             
+        }
+
+        
+        if (isWall(S)) {
+            
+            maze.removeNeighbour(positionNode(), S);
+            
+        }
+
+        
+        if (isWall(W)) {
+            
+            maze.removeNeighbour(positionNode(), W);
+            
+        }
+        
+        
+        
+        //This need to change it need to give me 180 degree of what it is giving me.
+        if (isWall(path.peek().Dir())) {
+            return false;
+        }
+            
+        
+        Move(path.next());
+        
+        if(path.empty()){
+            
+            std::cout << "reached center" << std::endl;
+            
+        }
+        
     }
     
     
-    if(isWall(positionNode().whichSide(nextPosition))){
-        
-        maze.removeNeighbour(positionNode(), nextPosition);
-        
-        return false;
-    }
-    
-    setPosition(path.peekNode());
-    
-    Move(path.next());
-        
-        draw();
-        
-    
-    }
     
     
     return true;
-    
 }
 
 

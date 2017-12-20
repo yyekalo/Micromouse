@@ -36,129 +36,146 @@ using namespace std;
 #include "VirtualMaze.h"
 #include "Mouse.h"
 
+#define center  Node(8,8)
+#define Start   Node(1,1)
 
+
+
+
+
+class CellDrawable : public sf::Transformable, public sf::Drawable {
+    
+public:
+     CellDrawable(){
+        
+        
+    
+    }
+    
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
+    {
+        
+        sf::CircleShape temp(30,3);
+        
+        temp.setOrigin(30, 30);
+        
+        temp.setRotation(40);
+        
+        temp.setPosition(400, 400);
+        
+        temp.setFillColor(sf::Color::Green);
+        
+        target.draw(temp);
+        
+        
+        
+    }
+    
+    
+    
+};
 
 
 
 int main(){
     
 
-    VirtualMaze virMaze;
-    
-    virMaze.run();
-    
-   
-    
-    
+    sf::Vertex wall[] =
+    {
+        sf::Vertex(sf::Vector2f(400,400 ),sf::Color::White),
+        sf::Vertex(sf::Vector2f(400 ,450 ),sf::Color::White),
+    };
     
     
     
-    return 0;
+    
+    
+    
+    sf::RectangleShape temp(sf::Vector2f(2, 100));
+    temp.setPosition(400, 400);
+    temp.setOutlineColor(sf::Color::Red);
+    //temp.setRotation(90);
+    //temp.setOutlineThickness(4);
+    temp.setFillColor(sf::Color::Red);
+    
+    sf::RenderWindow window(sf::VideoMode(800, 800), "My window");
+    
+    // run the program as long as the window is open
+    while (window.isOpen())
+    {
+        // check all the window's events that were triggered since the last iteration of the loop
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            // "close requested" event: we close the window
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        
+        // clear the window with black color
+        window.clear(sf::Color::Black);
+        
+        
+        
+        window.draw(wall, 2, sf::Lines);
+        
+        window.draw(temp);
+        // end the current frame
+        window.display();
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ 
+        
+    
+        return 0;
 }
 
 
 
 /*
+ sf::RectangleShape temp(sf::Vector2f(120, 50));
+ temp.setPosition(loc.x(), loc.y());
+ temp.setOutlineColor(sf::Color::Red);
+ temp.setOutlineThickness(4);
+ temp.setFillColor(sf::Color::Blue);
  
- sf::RenderWindow window(sf::VideoMode(1600,1600),"my home");
+ sf::RenderWindow window(sf::VideoMode(800, 800), "My window");
  
+ // run the program as long as the window is open
+ while (window.isOpen())
+ {
+ // check all the window's events that were triggered since the last iteration of the loop
  sf::Event event;
- 
- //    sf::Vertex line1[] =
- //    {
- //        sf::Vertex(sf::Vector2f(1, 1),sf::Color::Red),
- //        sf::Vertex(sf::Vector2f(1600, 1),sf::Color::Red),
- //    };
- 
- sf::Vertex line2[] =
+ while (window.pollEvent(event))
  {
- sf::Vertex(sf::Vector2f(1, 100),sf::Color::Red),
- sf::Vertex(sf::Vector2f(1600, 100),sf::Color::Red),
- };
- sf::Vertex line3[] =
- {
- sf::Vertex(sf::Vector2f(10, 10),sf::Color::Red),
- sf::Vertex(sf::Vector2f(0, 10),sf::Color::Red),
- };
- sf::Vertex line4[] =
- {
- sf::Vertex(sf::Vector2f(0, 10),sf::Color::Red),
- sf::Vertex(sf::Vector2f(0, 0),sf::Color::Red),
- };
- 
- 
- 
- while (window.isOpen()) {
- 
- while (window.pollEvent(event)) {
- 
- switch (event.type) {
- case sf::Event::Closed:
+ // "close requested" event: we close the window
+ if (event.type == sf::Event::Closed)
  window.close();
- break;
- 
- case sf::Event::MouseButtonReleased:
- std::cout << "button released "<<  event.mouseButton.x << " , " << event.mouseButton.y <<  std::endl;
- break;
- case sf::Event::MouseMoved:
- std::cout << "button released "<<  event.mouseMove.x << " , " << event.mouseMove.y <<  std::endl;
- break;
- case sf::Event::MouseWheelScrolled:
- if (event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
- std::cout << "wheel type: vertical" << std::endl;
- else if (event.mouseWheelScroll.wheel == sf::Mouse::HorizontalWheel)
- std::cout << "wheel type: horizontal" << std::endl;
- else
- std::cout << "wheel type: unknown" << std::endl;
- std::cout << "wheel movement: " << event.mouseWheelScroll.delta << std::endl;
- std::cout << "mouse x: " << event.mouseWheelScroll.x << std::endl;
- std::cout << "mouse y: " << event.mouseWheelScroll.y << std::endl;
- break;
- 
- 
- 
- default:
- break;
  }
  
- window.clear();
+ // clear the window with black color
+ window.clear(sf::Color::Black);
  
+ window.draw(temp);
  
- for (int x=1; x <17; x++) {
- 
- sf::Vertex line1[] =
- {
- sf::Vertex(sf::Vector2f(1, x*100),sf::Color::Red),
- sf::Vertex(sf::Vector2f(1600, x*100),sf::Color::Red),
- };
- 
- window.draw(line1,2,sf::Lines);
- 
- }
- 
- for (int x=1; x <17; x++) {
- 
- sf::Vertex line1[] =
- {
- sf::Vertex(sf::Vector2f(x*100,1),sf::Color::Red),
- sf::Vertex(sf::Vector2f(x*100,1600),sf::Color::Red),
- };
- 
- window.draw(line1,2,sf::Lines);
- 
- }
- // window.draw(line1,2,sf::Lines);
- window.draw(line2,2,sf::Lines);
- //            window.draw(line3,2,sf::Lines);
- //            window.draw(line4,2,sf::Lines);
- //
- 
- 
+ // end the current frame
  window.display();
- }
+ 
+ 
+ 
+ 
  
  }
- 
- 
- 
  */
+

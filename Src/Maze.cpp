@@ -154,11 +154,19 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
     }
     
     
+    
+    
+    /*
+     This is where to edit if you change the path class.
+     */
+    
     Path  path(to);
     
     while (path.start() != from) {
         path.add(parent[path.start()]);
     }
+    
+    
     
     explored.clear();
     
@@ -233,6 +241,42 @@ std::vector<Node> Maze::getStoredNeighbour(const Node& location){
     return maze[location];
 }
 
+
+
+
+
+
+
+
+
+
+
+
+std::vector<Direction> Maze::missingNeigbour(const Node& location){
+    
+    std::vector<Direction>  temp;
+    Direction side;
+    
+    
+    
+    for(auto neigbour : getNeighbour(location)){
+        
+        if(!areNeighbours(location, neigbour)){
+            
+            side = location.whichSide(neigbour);
+            
+            if (side==N || side==E || side==S || side==W) {
+                
+                temp.push_back(location.whichSide(neigbour));
+                
+            }
+            
+        }
+        
+    }
+    
+    return temp;
+}
 
 
 
