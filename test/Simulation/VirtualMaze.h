@@ -13,7 +13,7 @@
 #include <utility>
 #include <iostream>
 
-//my classes 
+//my classes
 #include "Maze.h"
 #include "Vector.h"
 #include "Path.h"
@@ -30,6 +30,7 @@
 typedef std::pair<Node, Node> nPair;
 
 #define cellWidth 85
+#define cellWallThickness 2
 
 
 class VirtualMaze{
@@ -52,18 +53,11 @@ public:
     
     Node toScreen(const Node& location);
     
-    std::vector<Direction> missingNeigbour(const Node& location, Maze maze);
-    
     Node getCenter(const Node& node);
     
     void deletePath(Path path);
     
     bool isWall(const Node& direction, Direction dir );
-    
-    //To be removed implmented in the Mouse class
-    Node followUntilbroken(Maze& maze, Path path);
-    
-    void VirtualBot();
     
     void drawNode(Node node, Direction dir = N);
     
@@ -79,19 +73,18 @@ public:
     
     //Drawing functions
     
+    void drawWall(const Node& location, Direction side, sf::Color color = sf::Color::Red);
+    
     void drawPath(Path path,sf::Color color = sf::Color::Green);
     
     void drawMaze(sf::Color color = sf::Color::Red);
     
     void drawMaze(Maze maze, sf::Color color=sf::Color::Red);
     
-    void drawVirtual();
-    
     void drawAll();
     
     void drawBackground();
-    
-    void animate(Node from, Node to);
+
     
     
    
@@ -108,9 +101,7 @@ private:
     
     
     void drawLine(const Node& from, const Node& to, sf::Color color);
-    
-    void drawWall(const Node& location, Direction side, sf::Color color = sf::Color::Red);
-    
+
     sf::RenderWindow window;
     
     sf::Event event;
@@ -121,15 +112,7 @@ private:
     
     Maze maze;
     
-    Maze internalMaze;
-    
-    bool dynamic;
-    
     bool escapeRun = true;
-    
-    Maze botMaze;
-    
-    Path alreadyTravledPath;
     
     Node start;
     
@@ -138,3 +121,4 @@ private:
 };
 
 #endif /* VirtualMaze_hpp */
+

@@ -24,8 +24,6 @@ Mouse::Mouse(Position currentPosition, Direction currentDirection, Node intCente
 
     maze.resetMaze();
     
-    virmaze.generateMaze();
-    
     virmaze.run();
     
     exploreMaze();
@@ -176,16 +174,7 @@ void faceDir(Direction dir){
 
 
 void Mouse::Move(dirVector dir){
-    
-//only in pc
-    virmaze.drawMaze(sf::Color());
-    
-    virmaze.animate(positionNode(), dir.getNode(positionNode()));
-    
-    virmaze.drawMaze(maze);
-    
-    //upto here
-    
+        
     
     setPosition(dir.getNode(positionNode()));
     
@@ -233,11 +222,7 @@ bool Mouse::exploreMaze(){
    
     temp = maze.findPath(Node(1,1), _center);
     
-    virmaze.drawPath(temp,sf::Color::Blue);
-    
     temp = maze.findPath(_center, Node(1,1));
-    
-    virmaze.drawPath(temp,sf::Color::Green);
     
     virmaze.display();
     
@@ -368,10 +353,6 @@ void Mouse::draw(){
     virmaze.drawMaze(sf::Color::Color(0,255,255,50));
     
     virmaze.drawMaze(maze,sf::Color::Red);
-    
-    virmaze.drawPath(bestPath,sf::Color::Green);
-    
-    virmaze.drawPath(maze.findPath(positionNode(), _center),sf::Color::White);
     
     virmaze.display();
     
