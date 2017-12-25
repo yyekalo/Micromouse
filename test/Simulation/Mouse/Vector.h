@@ -109,6 +109,7 @@ private:
 
 //Location(position)  of a cell(node)
 typedef Location<int> Node;
+typedef Location<int> Point;
 //abslute coordinate of the mouse in the maze
 typedef Location<float> Position;
 

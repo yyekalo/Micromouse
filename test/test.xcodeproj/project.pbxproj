@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A687616B1FEB9916005F3FD2 /* Time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A68761621FEB9915005F3FD2 /* Time.cpp */; };
+		A687616C1FEB9916005F3FD2 /* Maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A68761641FEB9915005F3FD2 /* Maze.cpp */; };
+		A687616D1FEB9916005F3FD2 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A68761671FEB9916005F3FD2 /* Path.cpp */; };
+		A687616E1FEB9916005F3FD2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A68761681FEB9916005F3FD2 /* main.cpp */; };
+		A687616F1FEB9916005F3FD2 /* Mouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A68761691FEB9916005F3FD2 /* Mouse.cpp */; };
 		A6B8994E1FE7D09A000FDD2C /* libsfml-graphics.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B899491FE7D09A000FDD2C /* libsfml-graphics.2.4.dylib */; };
 		A6B8994F1FE7D09A000FDD2C /* libsfml-system.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B8994A1FE7D09A000FDD2C /* libsfml-system.2.4.dylib */; };
 		A6B899501FE7D09A000FDD2C /* libsfml-window.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B8994B1FE7D09A000FDD2C /* libsfml-window.2.4.dylib */; };
 		A6B899511FE7D09A000FDD2C /* libsfml-audio.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B8994C1FE7D09A000FDD2C /* libsfml-audio.2.4.dylib */; };
 		A6B899521FE7D09A000FDD2C /* libsfml-network.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B8994D1FE7D09A000FDD2C /* libsfml-network.2.4.dylib */; };
-		A6B8998F1FE7D619000FDD2C /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6B899841FE7D618000FDD2C /* Path.cpp */; };
-		A6B899901FE7D619000FDD2C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6B899851FE7D618000FDD2C /* main.cpp */; };
-		A6B899911FE7D619000FDD2C /* Mouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6B899861FE7D618000FDD2C /* Mouse.cpp */; };
-		A6B899921FE7D619000FDD2C /* Time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6B8998B1FE7D619000FDD2C /* Time.cpp */; };
-		A6B899931FE7D619000FDD2C /* Maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6B8998C1FE7D619000FDD2C /* Maze.cpp */; };
 		A6B899941FE7D619000FDD2C /* VirtualMaze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6B8998D1FE7D619000FDD2C /* VirtualMaze.cpp */; };
 /* End PBXBuildFile section */
 
@@ -33,24 +33,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A68761611FEB9915005F3FD2 /* Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
+		A68761621FEB9915005F3FD2 /* Time.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Time.cpp; sourceTree = "<group>"; };
+		A68761631FEB9915005F3FD2 /* Time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Time.h; sourceTree = "<group>"; };
+		A68761641FEB9915005F3FD2 /* Maze.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Maze.cpp; sourceTree = "<group>"; };
+		A68761651FEB9916005F3FD2 /* Mouse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mouse.h; sourceTree = "<group>"; };
+		A68761661FEB9916005F3FD2 /* Vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		A68761671FEB9916005F3FD2 /* Path.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Path.cpp; sourceTree = "<group>"; };
+		A68761681FEB9916005F3FD2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A68761691FEB9916005F3FD2 /* Mouse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mouse.cpp; sourceTree = "<group>"; };
+		A687616A1FEB9916005F3FD2 /* Maze.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Maze.h; sourceTree = "<group>"; };
 		A6B8993E1FE7CF1D000FDD2C /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B899491FE7D09A000FDD2C /* libsfml-graphics.2.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.4.dylib"; path = "../../Documents/GitHub/Micromouse/lib/SFML/lib/libsfml-graphics.2.4.dylib"; sourceTree = "<group>"; };
 		A6B8994A1FE7D09A000FDD2C /* libsfml-system.2.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.4.dylib"; path = "../../Documents/GitHub/Micromouse/lib/SFML/lib/libsfml-system.2.4.dylib"; sourceTree = "<group>"; };
 		A6B8994B1FE7D09A000FDD2C /* libsfml-window.2.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.4.dylib"; path = "../../Documents/GitHub/Micromouse/lib/SFML/lib/libsfml-window.2.4.dylib"; sourceTree = "<group>"; };
 		A6B8994C1FE7D09A000FDD2C /* libsfml-audio.2.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-audio.2.4.dylib"; path = "../../Documents/GitHub/Micromouse/lib/SFML/lib/libsfml-audio.2.4.dylib"; sourceTree = "<group>"; };
 		A6B8994D1FE7D09A000FDD2C /* libsfml-network.2.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-network.2.4.dylib"; path = "../../Documents/GitHub/Micromouse/lib/SFML/lib/libsfml-network.2.4.dylib"; sourceTree = "<group>"; };
-		A6B899831FE7D618000FDD2C /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector.h; path = ../../Src/Vector.h; sourceTree = "<group>"; };
-		A6B899841FE7D618000FDD2C /* Path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Path.cpp; path = ../../Src/Path.cpp; sourceTree = "<group>"; };
-		A6B899851FE7D618000FDD2C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../Src/main.cpp; sourceTree = "<group>"; };
-		A6B899861FE7D618000FDD2C /* Mouse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Mouse.cpp; path = ../../Src/Mouse.cpp; sourceTree = "<group>"; };
-		A6B899871FE7D618000FDD2C /* Maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Maze.h; path = ../../Src/Maze.h; sourceTree = "<group>"; };
 		A6B899881FE7D619000FDD2C /* VirtualMaze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualMaze.h; sourceTree = "<group>"; };
-		A6B899891FE7D619000FDD2C /* Mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mouse.h; path = ../../Src/Mouse.h; sourceTree = "<group>"; };
-		A6B8998A1FE7D619000FDD2C /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Path.h; path = ../../Src/Path.h; sourceTree = "<group>"; };
-		A6B8998B1FE7D619000FDD2C /* Time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Time.cpp; path = ../../Src/Time.cpp; sourceTree = "<group>"; };
-		A6B8998C1FE7D619000FDD2C /* Maze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Maze.cpp; path = ../../Src/Maze.cpp; sourceTree = "<group>"; };
 		A6B8998D1FE7D619000FDD2C /* VirtualMaze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VirtualMaze.cpp; sourceTree = "<group>"; };
-		A6B8998E1FE7D619000FDD2C /* Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Time.h; path = ../../Src/Time.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,11 +69,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A68761701FEB9F49005F3FD2 /* Mouse */ = {
+			isa = PBXGroup;
+			children = (
+				A68761661FEB9916005F3FD2 /* Vector.h */,
+				A68761631FEB9915005F3FD2 /* Time.h */,
+				A68761621FEB9915005F3FD2 /* Time.cpp */,
+				A68761611FEB9915005F3FD2 /* Path.h */,
+				A68761671FEB9916005F3FD2 /* Path.cpp */,
+				A687616A1FEB9916005F3FD2 /* Maze.h */,
+				A68761641FEB9915005F3FD2 /* Maze.cpp */,
+				A68761651FEB9916005F3FD2 /* Mouse.h */,
+				A68761691FEB9916005F3FD2 /* Mouse.cpp */,
+				A68761681FEB9916005F3FD2 /* main.cpp */,
+			);
+			path = Mouse;
+			sourceTree = "<group>";
+		};
 		A6B899351FE7CF1D000FDD2C = {
 			isa = PBXGroup;
 			children = (
 				A6C5DDC81FE8F44E00E44B5B /* Simulation */,
-				A6B899401FE7CF1D000FDD2C /* test */,
 				A6B8993F1FE7CF1D000FDD2C /* Products */,
 				A6B899481FE7D09A000FDD2C /* Frameworks */,
 			);
@@ -85,23 +101,6 @@
 				A6B8993E1FE7CF1D000FDD2C /* test */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		A6B899401FE7CF1D000FDD2C /* test */ = {
-			isa = PBXGroup;
-			children = (
-				A6B899831FE7D618000FDD2C /* Vector.h */,
-				A6B8998E1FE7D619000FDD2C /* Time.h */,
-				A6B8998B1FE7D619000FDD2C /* Time.cpp */,
-				A6B8998A1FE7D619000FDD2C /* Path.h */,
-				A6B899841FE7D618000FDD2C /* Path.cpp */,
-				A6B899871FE7D618000FDD2C /* Maze.h */,
-				A6B8998C1FE7D619000FDD2C /* Maze.cpp */,
-				A6B899891FE7D619000FDD2C /* Mouse.h */,
-				A6B899861FE7D618000FDD2C /* Mouse.cpp */,
-				A6B899851FE7D618000FDD2C /* main.cpp */,
-			);
-			path = test;
 			sourceTree = "<group>";
 		};
 		A6B899481FE7D09A000FDD2C /* Frameworks */ = {
@@ -121,6 +120,7 @@
 			children = (
 				A6B899881FE7D619000FDD2C /* VirtualMaze.h */,
 				A6B8998D1FE7D619000FDD2C /* VirtualMaze.cpp */,
+				A68761701FEB9F49005F3FD2 /* Mouse */,
 			);
 			path = Simulation;
 			sourceTree = "<group>";
@@ -182,12 +182,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6B899931FE7D619000FDD2C /* Maze.cpp in Sources */,
-				A6B8998F1FE7D619000FDD2C /* Path.cpp in Sources */,
+				A687616C1FEB9916005F3FD2 /* Maze.cpp in Sources */,
+				A687616B1FEB9916005F3FD2 /* Time.cpp in Sources */,
+				A687616D1FEB9916005F3FD2 /* Path.cpp in Sources */,
+				A687616F1FEB9916005F3FD2 /* Mouse.cpp in Sources */,
+				A687616E1FEB9916005F3FD2 /* main.cpp in Sources */,
 				A6B899941FE7D619000FDD2C /* VirtualMaze.cpp in Sources */,
-				A6B899901FE7D619000FDD2C /* main.cpp in Sources */,
-				A6B899911FE7D619000FDD2C /* Mouse.cpp in Sources */,
-				A6B899921FE7D619000FDD2C /* Time.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

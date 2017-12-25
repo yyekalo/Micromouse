@@ -174,6 +174,10 @@ void faceDir(Direction dir){
 
 
 void Mouse::Move(dirVector dir){
+    
+    
+    
+    virmaze.animate(positionNode(), dir.getNode(positionNode()));
         
     
     setPosition(dir.getNode(positionNode()));
@@ -189,8 +193,10 @@ void Mouse::Move(dirVector dir){
 
 bool Mouse::exploreMaze(){
     
+   
+    virmaze.drawMaze(maze);
     
-    
+   
     Path temp;
     
     
@@ -220,11 +226,18 @@ bool Mouse::exploreMaze(){
     } while (positionNode()!=Node(1,1));
     
    
-    temp = maze.findPath(Node(1,1), _center);
+    temp = maze.findPath(Node(1,1), _center,false);
+    
+    virmaze.drawMaze(maze,sf::Color::Green);
+    virmaze.display();
+    virmaze.drawPath(temp);
+    virmaze.display();
+    virmaze.drawPath();
+    
     
     temp = maze.findPath(_center, Node(1,1));
     
-    virmaze.display();
+    
     
     while (true) {
         
@@ -290,12 +303,16 @@ bool Mouse::_followUntillBroken(Path path){
             
             maze.removeNeighbour(positionNode(), N);
             
+            virmaze.drawWall(positionNode(), N,sf::Color::Green);
+            
         }
         
         
         if (isWall(E)) {
             
             maze.removeNeighbour(positionNode(), E);
+            
+            virmaze.drawWall(positionNode(), E,sf::Color::Green);
             
         }
 
@@ -304,12 +321,16 @@ bool Mouse::_followUntillBroken(Path path){
             
             maze.removeNeighbour(positionNode(), S);
             
+            virmaze.drawWall(positionNode(), S,sf::Color::Green);
+            
         }
 
         
         if (isWall(W)) {
             
             maze.removeNeighbour(positionNode(), W);
+            
+            virmaze.drawWall(positionNode(), W,sf::Color::Green);
             
         }
         
@@ -320,7 +341,7 @@ bool Mouse::_followUntillBroken(Path path){
             return false;
         }
             
-        
+        usleep(100000);
         Move(path.next());
         
         if(path.empty()){

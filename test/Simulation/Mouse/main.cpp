@@ -42,28 +42,61 @@ using namespace std;
 
 
 
+/*
+ 
+ sf::CircleShape temp(30,3);
+ 
+ temp.setOrigin(30, 30);
+ 
+ temp.setRotation(float(45.0* dir));
+ 
+ temp.setPosition(pos.x(), pos.y());
+ 
+ temp.setFillColor(sf::Color::Green);
+ 
+ window.draw(temp);
+ 
+ display();
+ 
+ */
+
+
 
 
 int main(){
     
+    
+    Mouse Mouse;
 
-    
-    
     VirtualMaze temp;
-    
-    temp.run();
     
     Maze t;
     
-    
-    for (int x=1; x <=16; x++) {
-        
-        t.removeNeighbour(Node(x,x), N);
-        t.removeNeighbour(Node(x,x), W);
-    }
- 
-    
+    t.removeNeighbour(Node(1,1), N);
+    t.removeNeighbour(Node(1,2), N);
+    t.removeNeighbour(Node(1,3), N);
+    t.removeNeighbour(Node(1,4), N);
     temp.drawMaze(t);
+    
+    
+   
+   
+    
+   temp.animate(Node(1,1), Node(1,2));
+   temp.animate(Node(1,2), Node(2,2));
+   temp.animate(Node(2,2), Node(2,1));
+  temp .animate(Node(1,1), Node(1,2));
+    
+    
+    for (int x =1; x<16; x++ ) {
+        
+        for (int y =1 ; y <16; y++) {
+            
+            temp.animate(Node(x,y), Node(x,y+1));
+            
+        }
+        
+    }
     
     
     while (true) {

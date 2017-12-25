@@ -76,8 +76,6 @@ public:
     
     std::vector<Node> getStoredNeighbour(const Node& location);
     
-    std::vector<Direction> missingNeigbour(const Node& location);
-    
     bool isNeigbour(const Node& a, Direction dir);
     
     Node getNeigbour(const Node& a, Direction dir);

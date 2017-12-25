@@ -30,7 +30,6 @@
 typedef std::pair<Node, Node> nPair;
 
 #define cellWidth 85
-#define cellWallThickness 2
 
 
 class VirtualMaze{
@@ -53,15 +52,20 @@ public:
     
     Node toScreen(const Node& location);
     
+    std::vector<Direction> missingNeigbour(const Node& location, Maze maze);
+    
     Node getCenter(const Node& node);
     
     void deletePath(Path path);
     
     bool isWall(const Node& direction, Direction dir );
     
-    void drawNode(Node node, Direction dir = N);
+    //To be removed implmented in the Mouse class
+    Node followUntilbroken(Maze& maze, Path path);
     
-    void drawNode2(Node node, Direction dir = N);
+    void VirtualBot();
+    
+    void drawNode(Node node);
     
     void clear();
     
@@ -77,32 +81,44 @@ public:
     
     void drawPath(Path path,sf::Color color = sf::Color::Green);
     
+    void drawPath(Node from = Node(1,1) , Node to=Node(8,8), bool diagonal=true, sf::Color color=sf::Color::Green);
+    
     void drawMaze(sf::Color color = sf::Color::Red);
     
     void drawMaze(Maze maze, sf::Color color=sf::Color::Red);
     
+    void drawVirtual();
+    
     void drawAll();
     
     void drawBackground();
-
     
     
-   
-
+    //TODO improve this code
+    void animate(Node from, Node to);
     
-   
-    
-    
-
+    void drawNode(Point location, Direction dir,sf::Color color=sf::Color::Green);
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    sf::RenderWindow window;
     
 private:
     
     
     void drawLine(const Node& from, const Node& to, sf::Color color);
-
-    sf::RenderWindow window;
+    
+    
     
     sf::Event event;
     
@@ -112,7 +128,13 @@ private:
     
     Maze maze;
     
+    Maze _internalMaze;
+    
     bool escapeRun = true;
+    
+    Maze botMaze;
+    
+    Path alreadyTravledPath;
     
     Node start;
     
@@ -121,4 +143,3 @@ private:
 };
 
 #endif /* VirtualMaze_hpp */
-
