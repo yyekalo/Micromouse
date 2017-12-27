@@ -26,6 +26,8 @@ VirtualMaze::VirtualMaze(){
     
     window.display();
     
+    directory = "/Users/yikealo/Documents/github/Micromouse/Resource/";
+    
     
     
     //run();
@@ -427,17 +429,7 @@ void VirtualMaze::drawBackground(){
 
 void VirtualMaze::animate(Node from, Node to){
     
-    sf::RectangleShape rectangle(sf::Vector2f(80, 80));
-    
-    rectangle.setOrigin(40, 40);
-    
-    rectangle.setPosition(getCenter(to).x(), getCenter(to).y());
-    
-    rectangle.setFillColor(sf::Color::Color(255,255,0,50));
-    
-    window.draw(rectangle);
-    
-    window.display();
+
     
     int resolution = 10;
     
@@ -497,9 +489,9 @@ void VirtualMaze::animate(Node from, Node to){
    }
     
    
-    window.clear();
+    //window.clear();
     
-    drawMaze(_internalMaze);
+    //drawMaze(_internalMaze);
     
     //drawNode(Point(getCenter(to).x(),getCenter(to).y()), from.whichSide(to),sf::Color::Green);
     
@@ -653,6 +645,12 @@ void VirtualMaze::run(){
                     }
                     
                     
+                    if (event.key.code == sf::Keyboard::Q){
+                        
+                        
+                        saveMaze();
+                        
+                    }
                     
                     
                     
@@ -895,6 +893,84 @@ void VirtualMaze::dump(){
 
 
 
+
+
+
+
+
+
+
+void VirtualMaze::loadMaze(){
+    
+    
+    
+    
+}
+
+
+
+
+
+
+void VirtualMaze::saveMaze(){
+    
+    std::string name;
+    
+    std::cout << "Enter the name to save the maze as ";
+    std::cin >> name;
+    
+    std::ofstream myfile;
+    
+    myfile.open (directory + name);
+ 
+        
+        for (int y =1; y <=15; y++) {
+            
+            for (int x=1 ; x<=15 ; x++) {
+            
+            if(!maze.isNeigbour(Node(x,y), N))
+            {
+                myfile << 1;
+                
+                std::cout << "N at " << Node(x,y).returnString() <<std::endl;
+                
+            }else {
+                
+                myfile << 0;
+            }
+                
+            if(!maze.isNeigbour(Node(x,y), W))
+            {
+                    myfile << 1;
+                 std::cout << "W at " << Node(x,y).returnString() <<std::endl;
+            }
+            else
+            {
+                    
+                    myfile << 0;
+            }
+            
+        }
+        
+    }
+    
+    for (int x=1 ; x<=15 ; x++) {
+        
+        if(!maze.isNeigbour(Node(x,16), W))
+        {
+            myfile << 1;
+            
+             std::cout << "W at " << Node(x,16).returnString() <<std::endl;
+        }else {
+            
+            myfile << 0;
+        }
+        
+    }
+    
+     myfile.close();
+    
+}
 
 
 

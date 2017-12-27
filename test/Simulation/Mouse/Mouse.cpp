@@ -178,7 +178,19 @@ void Mouse::Move(dirVector dir){
     
     
     virmaze.animate(positionNode(), dir.getNode(positionNode()));
-        
+    
+//    sf::RectangleShape rectangle(sf::Vector2f(80, 80));
+//    
+//    rectangle.setOrigin(40, 40);
+//    
+//    rectangle.setPosition(virmaze.getCenter(positionNode()).x(), virmaze.getCenter(positionNode()).y());
+//    
+//    rectangle.setFillColor(sf::Color::Color(255,255,0,50));
+//    
+//    virmaze.window.draw(rectangle);
+//    
+//    virmaze.window.display();
+//        
     
     setPosition(dir.getNode(positionNode()));
     
@@ -202,8 +214,11 @@ bool Mouse::exploreMaze(){
     
     do{
         
+        virmaze.drawPath(temp,sf::Color::Black);
         
         temp = maze.findPath(positionNode(), _center,false);
+        
+        virmaze.drawPath(temp,sf::Color::Magenta);
         
         temp.print();
         
@@ -215,8 +230,11 @@ bool Mouse::exploreMaze(){
 
     do{
         
+        virmaze.drawPath(temp,sf::Color::Black);
         
         temp = maze.findPath(positionNode(), Node(1,1),false);
+        
+        virmaze.drawPath(temp,sf::Color::Magenta);
         
         temp.print();
         
@@ -232,7 +250,7 @@ bool Mouse::exploreMaze(){
     virmaze.display();
     virmaze.drawPath(temp);
     virmaze.display();
-    virmaze.drawPath();
+    virmaze.drawPath(Node(1,1),Node(8,8),false,sf::Color::Yellow);
     
     
     temp = maze.findPath(_center, Node(1,1));

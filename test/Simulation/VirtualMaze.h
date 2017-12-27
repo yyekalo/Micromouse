@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <utility>
 #include <iostream>
+#include <fstream>
+#include <string.h>
 
 //my classes
 #include "Maze.h"
@@ -101,12 +103,10 @@ public:
     
     
     
+    //Saved math handlers
+    void loadMaze();
     
-    
-    
-    
-    
-    
+    void saveMaze();
     
     
     
@@ -117,8 +117,6 @@ private:
     
     
     void drawLine(const Node& from, const Node& to, sf::Color color);
-    
-    
     
     sf::Event event;
     
@@ -140,6 +138,7 @@ private:
     
     Node end;
     
+    std::string directory;
 };
 
 #endif /* VirtualMaze_hpp */

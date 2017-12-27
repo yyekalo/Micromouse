@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <string.h>
 
 #include <iostream>
 #include <string>
@@ -65,11 +66,13 @@ using namespace std;
 
 int main(){
     
+  
     
-    Mouse Mouse;
+   // Mouse Mouse;
 
     VirtualMaze temp;
     
+    //temp.run();
     Maze t;
     
     t.removeNeighbour(Node(1,1), N);
@@ -81,23 +84,8 @@ int main(){
     
    
    
-    
-   temp.animate(Node(1,1), Node(1,2));
-   temp.animate(Node(1,2), Node(2,2));
-   temp.animate(Node(2,2), Node(2,1));
-  temp .animate(Node(1,1), Node(1,2));
-    
-    
-    for (int x =1; x<16; x++ ) {
-        
-        for (int y =1 ; y <16; y++) {
-            
-            temp.animate(Node(x,y), Node(x,y+1));
-            
-        }
-        
-    }
-    
+    //std::cout <<t.isNeigbour(Node(1,1), W*-)<<std::endl;
+
     
     while (true) {
         
