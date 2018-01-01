@@ -18,6 +18,8 @@ Mouse::Mouse(Position currentPosition, Direction currentDirection, Node intCente
     
     _center = intCenter;
     
+    _start = Node(1,1);
+    
     _heading = currentDirection;
     
     maze = Maze();
@@ -179,18 +181,7 @@ void Mouse::Move(dirVector dir){
     
     virmaze.animate(positionNode(), dir.getNode(positionNode()));
     
-//    sf::RectangleShape rectangle(sf::Vector2f(80, 80));
-//    
-//    rectangle.setOrigin(40, 40);
-//    
-//    rectangle.setPosition(virmaze.getCenter(positionNode()).x(), virmaze.getCenter(positionNode()).y());
-//    
-//    rectangle.setFillColor(sf::Color::Color(255,255,0,50));
-//    
-//    virmaze.window.draw(rectangle);
-//    
-//    virmaze.window.display();
-//        
+    maze.setExplored(positionNode());
     
     setPosition(dir.getNode(positionNode()));
     
@@ -205,55 +196,76 @@ void Mouse::Move(dirVector dir){
 
 bool Mouse::exploreMaze(){
     
-   
+    Path temp,temp4;
+    
     virmaze.drawMaze(maze);
     
-   
-    Path temp;
+    gotoNode(_center);
+    
+    gotoNode(getExplored(maze.findPath(Node(1,1),positionNode(),false)));
     
     
     do{
         
-        virmaze.drawPath(temp,sf::Color::Black);
+        Node temp1,temp2;
         
-        temp = maze.findPath(positionNode(), _center,false);
-        
-        virmaze.drawPath(temp,sf::Color::Magenta);
-        
-        temp.print();
-        
-         _followUntillBroken(temp);
-        
-        
-    } while (positionNode()!=_center);
-    
-
-    do{
         
         virmaze.drawPath(temp,sf::Color::Black);
         
-        temp = maze.findPath(positionNode(), Node(1,1),false);
-        
-        virmaze.drawPath(temp,sf::Color::Magenta);
-        
-        temp.print();
-        
-        _followUntillBroken(temp);
-        
-        
-    } while (positionNode()!=Node(1,1));
+        temp = maze.findPath(_start, _center,false);
+        std::cout <<"******************************" << std::endl;
     
-   
-    temp = maze.findPath(Node(1,1), _center,false);
+       
+        
+        virmaze.drawPath(temp,sf::Color::White);
+        
+        temp1 = getExplored(maze.findPath(_start, _center,false));
+ 
+        gotoNode(getExplored(maze.findPath(_start, _center,false)));
+        
+        //_followUntillBroken(maze.findPath(positionNode(), getExplored(maze.findPath(_center, positionNode())),false));
+        Node tt = positionNode();
+        
+       temp4 = maze.findPath(_center, positionNode(),false);
+        
+        temp2 = getExplored(maze.findPath(_center, positionNode(),false));
+        
+        maze.findPath(_center, positionNode(),false).print();
+        
+        gotoNode(getExplored(maze.findPath(_center, positionNode(),false)));
+        
+        Node t;
+        
+        while (!temp.empty()) {
+            
+            t = temp.nextNode();
+            
+            std::cout << t.returnString() <<  maze.isExplored(t) << "    ";
+            
+        }
+        std::cout << std::endl;
+        
+         std::cout <<"******************************" << std::endl;
+    }while (!isExplored(maze.findPath(_start, _center,false)));
+    
+     std::cout << "finished drawing all" << std::endl;
+    
+    _followUntillBroken(maze.findPath(positionNode(), _start));
+    
+    
+    
     
     virmaze.drawMaze(maze,sf::Color::Green);
     virmaze.display();
-    virmaze.drawPath(temp);
+    virmaze.drawPath(maze.findPath(Node(1,1), _center,false),sf::Color::Cyan);
     virmaze.display();
     virmaze.drawPath(Node(1,1),Node(8,8),false,sf::Color::Yellow);
+    virmaze.display();
+    virmaze.drawNode(virmaze.getCenter(positionNode()), HeadingDir());
     
     
-    temp = maze.findPath(_center, Node(1,1));
+    
+   
     
     
     
@@ -290,11 +302,30 @@ bool Mouse::followPath(Path path){
 
 
 //Test this function more
+//TODO:- i might implment time out for this
 bool Mouse::gotoNode(Node destination){
     
+    if (Node(0,0)==destination) {
+        return false;
+    }
     
-   return  _followUntillBroken(maze.findPath(positionNode(), destination));
+    Path temp;
     
+    while (positionNode()!= destination) {
+        
+        temp = maze.findPath(positionNode(), destination,false);
+        
+        virmaze.drawPath(temp,sf::Color::Magenta);
+        
+        _followUntillBroken(temp);
+        
+        virmaze.drawPath(temp,sf::Color::Black);
+        
+        
+        
+    }
+    
+    return true;
 }
 
 
@@ -303,14 +334,14 @@ bool Mouse::gotoNode(Node destination){
 
 
 
-
+//TODO: edit this to work on the real micromouse
 bool Mouse::_followUntillBroken(Path path){
     
     
     
     while (!path.empty()) {
         
-        std::cout << "current posistion " <<positionNode().returnString() << std::endl;
+        
         
 
         //TODO:- implment realistic exploration
@@ -355,6 +386,8 @@ bool Mouse::_followUntillBroken(Path path){
         
         
         //This need to change it need to give me 180 degree of what it is giving me.
+        
+        
         if (isWall(path.peek().Dir())) {
             return false;
         }
@@ -362,11 +395,7 @@ bool Mouse::_followUntillBroken(Path path){
         usleep(100000);
         Move(path.next());
         
-        if(path.empty()){
-            
-            std::cout << "reached center" << std::endl;
-            
-        }
+        
         
     }
     
@@ -403,6 +432,58 @@ void Mouse::draw(){
     
 }
 
+
+
+
+
+
+bool Mouse::isExplored(Path path){
+    
+    Node temp;
+    
+    while (!path.empty()) {
+        
+        temp = path.nextNode();
+        
+        if (!maze.isExplored(temp)) {
+            
+            return false;
+            
+        }
+    }
+    
+    return true;
+    
+}
+
+
+
+
+
+
+Node Mouse::getExplored(Path path){
+    
+    
+    Node temp = path.start();
+    
+    if(isExplored(path)){
+        
+        return  Node(0,0);
+        
+    }
+        
+    while (maze.isExplored(path.peekNode())){
+        
+        temp = path.nextNode();
+        
+    }
+        
+        
+    
+    return  temp ;
+    
+    
+}
 
 
 

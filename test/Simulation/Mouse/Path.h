@@ -90,6 +90,8 @@ public:
     Node start();
     
     void print();
+    
+    Path compress();
 
     
 private:

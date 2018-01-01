@@ -32,6 +32,7 @@
 typedef std::pair<Node, Node> nPair;
 
 #define cellWidth 85
+#define resolution 20 // this determines the speed of the simulation
 
 
 class VirtualMaze{

@@ -322,7 +322,7 @@ Node       Path::nextNode(){
 
 bool Path::operator==(Path node){
     
-    if (node.size()!=path.size()) {
+    if (node.size()!=(path.size() + 1)) {
         
         return false;
         
@@ -332,7 +332,7 @@ bool Path::operator==(Path node){
     
     std::stack<dirVector>  temp2 = node.path;
     
-    while (temp1.empty() || temp2.empty()) {
+    while (!temp1.empty() || !temp2.empty()) {
         
         if (temp2.top() != temp1.top()) {
             
@@ -359,33 +359,7 @@ bool Path::operator==(Path node){
 
 bool Path::operator!=(Path node){
     
-    if (node.size()!=path.size()) {
-        
-        return true;
-        
-    }
-    
-    std::stack<dirVector>  temp1 = path;
-    
-    std::stack<dirVector>  temp2 = node.path;
-    
-    //TODO
-    
-//    while (temp1.empty() || temp2.empty()) {
-//        
-//        if (temp2.top() == temp1.top()) {
-//            
-//            return true;
-//        }
-//        
-//        temp1.pop();
-//        
-//        temp2.pop();
-//        
-//    }
-//    
-    
-    return false;
+    return !(this->operator==(node));
     
 }
 
@@ -480,7 +454,7 @@ bool Path::empty(){
 
 int Path::size(){
     
-    return path.size();
+    return path.size()+1;
     
 }
 
@@ -532,6 +506,30 @@ void Path::print(){
 
     
 
+    
+    
+}
+
+
+
+
+
+
+Path Path::compress(){
+    
+    Path temp = * this ;
+    
+    
+    temp.print();
+    
+    
+    
+    
+    
+    
+    
+    return temp;
+    
     
     
 }

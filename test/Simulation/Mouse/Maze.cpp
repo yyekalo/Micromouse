@@ -12,6 +12,8 @@ Maze::Maze(){
     
     resetMaze();
     
+    
+    
 }
 
 
@@ -54,18 +56,17 @@ float Maze::movementCost(const Node& from, const Node& to) const{
 
 bool Maze::mazeExplored(){
     
-    bool temp = true;
     
     for (auto isexp : explored) {
         
         if (!isexp.second ) {
             
-            temp = false;
-            break;
+            return false;
+           
         }
     }
     
-    return temp;
+    return true;
 }
 
 
@@ -82,6 +83,8 @@ bool Maze::mazeExplored(){
 //return Path from (from) to the destination to.
 Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
     
+    bool foundPath = false;
+    
     PriorityQueue toBeExplored;
     
     toBeExplored.put(from, 0);
@@ -93,16 +96,17 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
     
     parent[from] = from;
     
-    explored[from] = true;
-    
-    
+
     while (!toBeExplored.empty()) {
         
         
         Node currentNode = toBeExplored.get();
         
-        //std::cout << "currentNode "  << currentNode.returnString() << std::endl;
-        explored[currentNode] = true;
+       
+        if (currentNode == to) {
+            
+            foundPath = true;
+        }
         
        
         
@@ -147,7 +151,7 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
     
     
    
-    if (explored[to]==false) {
+    if (!foundPath) {
         
         return Path(Node(0,0));
         
@@ -157,7 +161,7 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
     
     
     /*
-     This is where to edit if you change the path class.
+     Note:- This is where to edit if you change the path class.
      */
     
     Path  path(to);
@@ -166,9 +170,6 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
         path.add(parent[path.start()]);
     }
     
-    
-    
-    explored.clear();
     
     return path;  
     
@@ -601,6 +602,8 @@ void Maze::resetMaze(){
     
     maze.clear();
     
+    explored.clear();
+    
     for(int x = mazeWidth; x > 0  ; x-- ){
         
         
@@ -612,6 +615,10 @@ void Maze::resetMaze(){
            
             maze.emplace(temp,neb);
             
+            explored.emplace(temp,false);
+            
+            
+           
             
         }
         

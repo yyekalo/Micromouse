@@ -18,10 +18,7 @@
 #include "Path.h"
 #include "Maze.h"
 #include "VirtualMaze.h"
-
-enum IRWall{
-    F, DF, LF , RF
-};
+#include "IRSensors.h"
 
 
 #define sideWidth 18
@@ -79,17 +76,24 @@ public:
     
     void draw();
     
+    bool isExplored(Path path);
+    
+    //returns the first explored node in the path
+    Node getExplored(Path path);
+    
    
     
     
     
-private:
+//private:
     
     bool _followUntillBroken(Path path);
     
     Position _position;
     
     Node _center;
+    
+    Node _start;
     
     double _heading;
     

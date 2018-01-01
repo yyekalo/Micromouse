@@ -417,6 +417,14 @@ void VirtualMaze::drawBackground(){
         
     }
     
+    sf::RectangleShape centers(sf::Vector2f(2*cellWidth,2*cellWidth));
+    
+    centers.setOrigin(cellWidth, cellWidth);
+    centers.setPosition(8*cellWidth, 8*cellWidth);
+    centers.setFillColor(sf::Color::Color(0,0,255,100));
+    
+    window.draw(centers);
+    
     
 }
 
@@ -431,7 +439,7 @@ void VirtualMaze::animate(Node from, Node to){
     
 
     
-    int resolution = 10;
+   
     
     Point mouse = getCenter(from);
     
@@ -594,17 +602,10 @@ void VirtualMaze::run(){
                     
                     
                     
-                    if (event.key.code == sf::Keyboard::R){
+                    if (event.key.code == sf::Keyboard::E){
                         
                         
-                        escapeRun = false;
-                        
-                    }
-                    
-                    
-                    if (event.key.code == sf::Keyboard::V){
-                        
-                        
+                        end =  getNode(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
                         
                         
                     }
@@ -625,13 +626,18 @@ void VirtualMaze::run(){
                     
                     
                     
-                    if (event.key.code == sf::Keyboard::E){
+                    
+                    
+                    
+                    
+                    if (event.key.code == sf::Keyboard::L){
                         
                         
-                        end =  getNode(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
-                        
+                        loadMaze();
                         
                     }
+
+
                     
                     
                     
@@ -643,6 +649,17 @@ void VirtualMaze::run(){
                         
                         
                     }
+                    
+                    
+                    if (event.key.code == sf::Keyboard::R){
+                        
+                        
+                        escapeRun = false;
+                        
+                    }
+                    
+                    
+                    
                     
                     
                     if (event.key.code == sf::Keyboard::Q){
@@ -902,8 +919,54 @@ void VirtualMaze::dump(){
 
 void VirtualMaze::loadMaze(){
     
+    char m;
+    
+    maze.resetMaze();
+    
+    std::string name;
+    
+    std::cout << "Enter the name of the maze to load ";
+    
+    std::cin >> name;
+    
+    std::ifstream mazein;
+    
+    mazein.open (directory + name , std::ifstream::in);
     
     
+    for (int y =1; y <=16; y++) {
+        
+        for (int x=1 ; x<=16 ; x++) {
+            
+          
+            if(49 == mazein.get())
+            {
+                maze.removeNeighbour(Node(x,y), N);
+
+
+            }
+
+
+            if(49 == mazein.get())
+            {
+                 maze.removeNeighbour(Node(x,y), E);
+
+            }
+            
+            
+            
+        }
+        
+    }
+    
+    
+    
+    
+    mazein.close();
+    
+    window.clear();
+    window.display();
+    drawAll();
     
 }
 
@@ -924,25 +987,25 @@ void VirtualMaze::saveMaze(){
     myfile.open (directory + name);
  
         
-        for (int y =1; y <=15; y++) {
+        for (int y =1; y <=16; y++) {
             
-            for (int x=1 ; x<=15 ; x++) {
+            for (int x=1 ; x<=16 ; x++) {
             
             if(!maze.isNeigbour(Node(x,y), N))
             {
                 myfile << 1;
                 
-                std::cout << "N at " << Node(x,y).returnString() <<std::endl;
+               
                 
             }else {
                 
                 myfile << 0;
             }
                 
-            if(!maze.isNeigbour(Node(x,y), W))
+            if(!maze.isNeigbour(Node(x,y), E))
             {
                     myfile << 1;
-                 std::cout << "W at " << Node(x,y).returnString() <<std::endl;
+                
             }
             else
             {
@@ -954,20 +1017,8 @@ void VirtualMaze::saveMaze(){
         
     }
     
-    for (int x=1 ; x<=15 ; x++) {
-        
-        if(!maze.isNeigbour(Node(x,16), W))
-        {
-            myfile << 1;
-            
-             std::cout << "W at " << Node(x,16).returnString() <<std::endl;
-        }else {
-            
-            myfile << 0;
-        }
-        
-    }
-    
+
+
      myfile.close();
     
 }

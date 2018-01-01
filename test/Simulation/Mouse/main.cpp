@@ -41,58 +41,55 @@ using namespace std;
 #define Start   Node(1,1)
 
 
+using namespace std;
+
+
+int main(){
+    
+    
+    //Mouse m;
+    
+    Maze temp;
+    
+    Path t = temp.findPath(Start, Node(8,8),false);
+    Path n = temp.findPath(Start, Node(8,8),false);
+    
+    
+    t.print();
+    n.print();
+    n.compress();
+    
+ 
+    cout << (t==n) << endl;
+    cout << (t!=n) << endl;
+    
+
+}
+
+
+
 
 
 /*
  
- sf::CircleShape temp(30,3);
  
- temp.setOrigin(30, 30);
+ for (int x=1; x<=16; x++) {
  
- temp.setRotation(float(45.0* dir));
+ for (int y=1; y<=16; y++) {
  
- temp.setPosition(pos.x(), pos.y());
  
- temp.setFillColor(sf::Color::Green);
  
- window.draw(temp);
+ }
  
- display();
+ }
+ 
+ 
  
  */
 
 
 
 
-int main(){
-    
-  
-    
-   // Mouse Mouse;
-
-    VirtualMaze temp;
-    
-    //temp.run();
-    Maze t;
-    
-    t.removeNeighbour(Node(1,1), N);
-    t.removeNeighbour(Node(1,2), N);
-    t.removeNeighbour(Node(1,3), N);
-    t.removeNeighbour(Node(1,4), N);
-    temp.drawMaze(t);
-    
-    
-   
-   
-    //std::cout <<t.isNeigbour(Node(1,1), W*-)<<std::endl;
-
-    
-    while (true) {
-        
-    }
-    
-        return 0;
-}
 
 /*
  
