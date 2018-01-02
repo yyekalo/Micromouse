@@ -102,17 +102,13 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
         
         Node currentNode = toBeExplored.get();
         
-       
-        if (currentNode == to) {
-            
-            foundPath = true;
-        }
+    
         
        
         
         if (currentNode == to) {
             
-           
+           foundPath = true;
             break;
         }
         
@@ -129,6 +125,8 @@ Path Maze::findPath(const Node& from, const Node& to,bool diagnoalAllowed){
                 continue;
             }
             
+            
+            //TODo tweak this to give you better movment 
             float newCost = cost[currentNode] +  movementCost(currentNode, neighbour);
             
             

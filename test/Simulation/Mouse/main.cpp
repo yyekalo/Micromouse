@@ -1,4 +1,4 @@
-//
+////
 //  main.cpp
 //  teensyMicromouse
 //
@@ -44,29 +44,91 @@ using namespace std;
 using namespace std;
 
 
+
+
+
 int main(){
     
     
-    //Mouse m;
+    Mouse m;
     
-    Maze temp;
+    VirtualMaze temp;
     
-    Path t = temp.findPath(Start, Node(8,8),false);
-    Path n = temp.findPath(Start, Node(8,8),false);
+    temp.run();
+    
+   
+  
     
     
-    t.print();
-    n.print();
-    n.compress();
     
- 
-    cout << (t==n) << endl;
-    cout << (t!=n) << endl;
     
-
+    
+    return 0;
+    
 }
 
 
+
+
+
+
+
+/*
+ 
+ //Mouse m;
+ 
+ Maze temp;
+ 
+ Path t = temp.findPath(Node(2,2) , Node(3,3),false);
+ t.add(Node(1,2));
+ t.add(Node(1,1));
+ 
+ 
+ t.print();
+ 
+ Path compressedPath = t.compress();
+ 
+ float cost =0;
+ 
+ int ma,size = compressedPath.size();
+ 
+ Direction lastDirection;
+ 
+ int numberof45turns=0;
+ 
+ 
+ do{
+ 
+ size = compressedPath.size();
+ 
+ ma = compressedPath.peek().Mag();
+ 
+ cost +=  0.19*pow(compressedPath.peek().Mag(), 0.5);
+ 
+ lastDirection = compressedPath.next().Dir();
+ 
+ numberof45turns += abs(lastDirection - compressedPath.peek().Dir());
+ 
+ }while (compressedPath.size()>1);
+ 
+ cost +=  0.19*pow(compressedPath.peek().Mag(), 0.5);
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ */
 
 
 

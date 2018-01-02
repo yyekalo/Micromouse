@@ -582,6 +582,8 @@ void VirtualMaze::run(){
                         
                         drawAll();
                         
+                        std::cout << "cost of current path " << _path.cost() << std::endl;
+                        
                     }
                     
                     if (event.key.code == sf::Keyboard::C){
@@ -596,6 +598,17 @@ void VirtualMaze::run(){
                         drawAll();
                         
                         
+                        
+                    }
+                    
+                    
+                    if (event.key.code == sf::Keyboard::D){
+                        
+                        _path = maze.findPath(start, end);
+                        
+                        drawAll();
+                        
+                        std::cout << "cost of current path " << _path.cost() << std::endl;
                         
                     }
                     

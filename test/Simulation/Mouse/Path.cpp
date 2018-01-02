@@ -270,6 +270,10 @@ void Path::add(dirVector toBeAdded){
     
     path.push(toBeAdded);
     
+    Direction kk = static_cast<Direction>(toBeAdded.Dir()+7);
+    
+    toBeAdded.Dir(kk);
+    
     lastNode = toBeAdded.getNode(lastNode);
     
 }
@@ -322,7 +326,7 @@ Node       Path::nextNode(){
 
 bool Path::operator==(Path node){
     
-    if (node.size()!=(path.size() + 1)) {
+    if (node.size()!=(path.size())) {
         
         return false;
         
@@ -454,7 +458,7 @@ bool Path::empty(){
 
 int Path::size(){
     
-    return path.size()+1;
+    return path.size();
     
 }
 
@@ -514,28 +518,146 @@ void Path::print(){
 
 
 
-
+//TODO: important this function needs a code review
+//Doing this so i can move onthe simulation
+//REVIEW this function!!
 Path Path::compress(){
     
-    Path temp = * this ;
+   Path temp = * this ;
+
+    Path toReturn(temp.lastNode);
+
+//    dirVector currentDirVector, lastDirvector = temp.next();
+//
+//    bool write = false;
+//
+//
+//    while (!temp.empty()) {
+//
+//        currentDirVector = temp.next();
+//
+//        if (currentDirVector.Dir() == lastDirvector.Dir()) {
+//
+//            lastDirvector.Mag(lastDirvector.Mag()+currentDirVector.Mag());
+//
+//            write = true;
+//
+//        } else {
+//
+//            toReturn.add(lastDirvector);
+//
+//            lastDirvector = currentDirVector;
+//
+//            write =  false;
+//
+//        }
+//
+//    }
+//    if (write) {
+//
+//
+//    toReturn.add(lastDirvector);
+//    }
+//
+//    toReturn.lastNode = temp.lastNode;
+//
+//
+//    return toReturn;
     
+    Node current, last = temp.nextNode();
+
+    while (!temp.empty()) {
+        
+        current = temp.nextNode();
+        
+        if (toReturn.lastNode.whichSide(current) != toReturn.lastNode.whichSide(last) ) {
+            
+            toReturn.add(last);
+            
+            
+        }
+        
+        last = current;
+        
+        
+    }
     
-    temp.print();
+    toReturn.add(last);
     
+    Path tobe(toReturn.lastNode);
     
+    while (!toReturn.empty()) {
+        
+        tobe.add(toReturn.nextNode());
+    }
     
-    
-    
-    
-    
-    return temp;
-    
-    
+    return tobe;
     
 }
 
 
 
+
+
+
+
+
+
+float Path::cost(){
+    
+//    Path temp = compress();
+//
+//     Node temp2 = temp.peekNode();
+//
+//    dirVector current, last = temp.next();
+//
+//    temp2 = temp.peekNode();
+//
+//   float moveCost1,moveCost2, cost = 0.19*pow(last.Mag(), 0.5);
+//
+//
+//    while (!temp.empty()) {
+//
+//        temp2 = temp.peekNode();
+//
+//        current = temp.next();
+//
+//        moveCost1 = 0.19*pow(current.Mag(), 0.5);
+//
+//        cost += moveCost1; //0.19*pow(current.Mag(), 0.5);
+//
+//      moveCost2 = abs( static_cast<int>(current.Dir()) - static_cast<int>(last.Dir())) < 4 ?
+//
+//        abs( static_cast<int>(current.Dir()) - static_cast<int>(last.Dir())) * Turn45 : 8-abs( static_cast<int>(current.Dir()) - static_cast<int>(last.Dir())) * Turn45;
+//
+//        cost += moveCost2;
+//    }
+//
+//
+//    return cost;
+//
+    Path compressedPath = compress();
+    
+    Direction lastDirection;
+    
+    float cost = 0;
+    
+    
+    while (compressedPath.size()>1){
+
+        cost +=  0.19*pow(compressedPath.peek().Mag(), 0.5);
+        
+        lastDirection = compressedPath.next().Dir();
+        
+        cost += (lastDirection - compressedPath.peek().Dir())*Turn45;
+        
+    }
+    
+    cost +=  0.19*pow(compressedPath.peek().Mag(), 0.5);
+    
+    return cost;
+    
+}
 
 
 

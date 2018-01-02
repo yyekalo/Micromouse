@@ -5,7 +5,7 @@
 //  Created by Yikealo Abraha  on 5/16/17.
 //  Copyright © 2017 Yikealo Abraha . All rights reserved.
 //
-
+#pragma once
 #ifndef Time_hpp
 #define Time_hpp
 

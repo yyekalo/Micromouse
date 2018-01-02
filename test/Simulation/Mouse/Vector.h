@@ -5,6 +5,7 @@
 //  Created by Yikealo Abraha  on 4/18/17.
 //  Copyright © 2017 Yikealo Abraha . All rights reserved.
 //
+#pragma once
 
 #ifndef Vector_hpp
 #define Vector_hpp
@@ -26,10 +27,16 @@ enum Direction {
    W=6,         E=2,
     
    SW=5,  S=4,  SE=3
-    
-   
-    
+       
 };
+
+
+Direction& operator++(Direction& orig);
+
+Direction operator++(Direction& orig, int);
+
+int operator-(Direction orig, Direction second);
+
 
 //Direction& operator++(Direction& orig){
 //

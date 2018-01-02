@@ -5,7 +5,7 @@
 //  Created by Yikealo Abraha  on 5/13/17.
 //  Copyright © 2017 Yikealo Abraha . All rights reserved.
 //
-
+#pragma once
 #ifndef Mouse_hpp
 #define Mouse_hpp
 

@@ -19,6 +19,7 @@
 		A6B899521FE7D09A000FDD2C /* libsfml-network.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B8994D1FE7D09A000FDD2C /* libsfml-network.2.4.dylib */; };
 		A6B899941FE7D619000FDD2C /* VirtualMaze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6B8998D1FE7D619000FDD2C /* VirtualMaze.cpp */; };
 		A6EF42F11FF7A4E4008F5068 /* IRSensors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6EF42EF1FF7A4E4008F5068 /* IRSensors.cpp */; };
+		A6F00E431FFB6C5F0017ECAB /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6F00E421FFB6C5F0017ECAB /* Vector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +55,7 @@
 		A6B8998D1FE7D619000FDD2C /* VirtualMaze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VirtualMaze.cpp; sourceTree = "<group>"; };
 		A6EF42EF1FF7A4E4008F5068 /* IRSensors.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IRSensors.cpp; sourceTree = "<group>"; };
 		A6EF42F01FF7A4E4008F5068 /* IRSensors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRSensors.h; sourceTree = "<group>"; };
+		A6F00E421FFB6C5F0017ECAB /* Vector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vector.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				A6EF42F01FF7A4E4008F5068 /* IRSensors.h */,
 				A6EF42EF1FF7A4E4008F5068 /* IRSensors.cpp */,
 				A68761661FEB9916005F3FD2 /* Vector.h */,
+				A6F00E421FFB6C5F0017ECAB /* Vector.cpp */,
 				A68761631FEB9915005F3FD2 /* Time.h */,
 				A68761621FEB9915005F3FD2 /* Time.cpp */,
 				A68761611FEB9915005F3FD2 /* Path.h */,
@@ -193,6 +196,7 @@
 				A687616D1FEB9916005F3FD2 /* Path.cpp in Sources */,
 				A687616F1FEB9916005F3FD2 /* Mouse.cpp in Sources */,
 				A687616E1FEB9916005F3FD2 /* main.cpp in Sources */,
+				A6F00E431FFB6C5F0017ECAB /* Vector.cpp in Sources */,
 				A6B899941FE7D619000FDD2C /* VirtualMaze.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

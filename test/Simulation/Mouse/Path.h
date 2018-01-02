@@ -5,7 +5,7 @@
 //  Created by Yikealo Abraha  on 5/6/17.
 //  Copyright © 2017 Yikealo Abraha . All rights reserved.
 //
-
+#pragma once
 #ifndef Path_hpp
 #define Path_hpp
 
@@ -13,6 +13,15 @@
 #include "Vector.h"
 #include <stack>
 #include <assert.h>
+
+
+//The cost of of movment
+#define Turn45   0.785398
+//straight movment cost  = 0.19*pow(#cellstoTraverce, 0.5);
+
+
+
+
 
 
 class dirVector {
@@ -92,6 +101,8 @@ public:
     void print();
     
     Path compress();
+    
+    float cost();
 
     
 private:

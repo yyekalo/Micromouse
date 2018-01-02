@@ -5,7 +5,7 @@
 //  Created by Yikealo Abraha  on 4/23/17.
 //  Copyright © 2017 Yikealo Abraha . All rights reserved.
 //
-
+#pragma once
 #ifndef Maze_hpp
 #define Maze_hpp
 
